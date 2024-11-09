@@ -31,20 +31,26 @@
     {
       "link": "https://discord.gg/minecraft",
       "content": "Minecraft's Discord",
-      "color": "#800080FF",
-      "text_color": "#fff"
+      "color": "#800080",
+      "text_color": "#fff",
+      "color_hover": "#680c68",
+      "text_color_hover": "#eee"
     },
     {
       "link": "https://github.com/anhgelus",
       "content": "GitHub",
       "color": "#800080FF",
-      "text_color": "#fff"
+      "text_color": "#fff",
+      "color_hover": "#680c68",
+      "text_color_hover": "#eee"
     },
     {
       "link": "https://youtube.com/@anhgelus",
       "content": "YouTube",
       "color": "#800080FF",
-      "text_color": "#fff"
+      "text_color": "#fff",
+      "color_hover": "#680c68",
+      "text_color_hover": "#eee"
     }
   ],
   "legal": {

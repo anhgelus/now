@@ -36,10 +36,12 @@ type BackgroundColor struct {
 }
 
 type Link struct {
-	Link      string `json:"link"`
-	Content   string `json:"content"`
-	Color     string `json:"color"`
-	TextColor string `json:"text_color"`
+	Link           string `json:"link"`
+	Content        string `json:"content"`
+	Color          string `json:"color"`
+	TextColor      string `json:"text_color"`
+	ColorHover     string `json:"color_hover"`
+	TextColorHover string `json:"text_color_hover"`
 }
 
 type Legal struct {
@@ -60,17 +62,17 @@ func (d *Data) GetBackground() template.CSS {
 }
 
 func (d *Data) GetBackgroundImage() template.CSS {
-	return template.CSS("background-image: url(" + golatt.GetStaticPath(d.Image) + ");")
+	return template.CSS("--background-image: url(" + golatt.GetStaticPath(d.Image) + ");")
 }
 
 func (d *Data) GetTextColor() template.CSS {
-	return template.CSS("color: " + d.Color.Text + ";")
+	return template.CSS("--text-color: " + d.Color.Text + ";")
 }
 
 func (l *Link) GetLinkColor() template.CSS {
-	return template.CSS("color: " + l.TextColor + ";")
+	return template.CSS("--text-color: " + l.TextColor + ";--text-color-hover: " + l.TextColorHover + ";")
 }
 
 func (l *Link) GetBackground() template.CSS {
-	return template.CSS("background: " + l.Color + ";")
+	return template.CSS("--background: " + l.Color + ";--background-hover: " + l.ColorHover + ";")
 }

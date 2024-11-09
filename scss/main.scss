@@ -1,15 +1,19 @@
 @use "../node_modules/reset-css/reset.css";
 
+:root {
+  --text-color: #000
+}
+
 body {
+  --background-image: ;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background: var(--background-image) center fixed no-repeat;
   background-size: cover;
+  color: var(--text-color);
 }
 
 .credits {
@@ -19,7 +23,7 @@ body {
   gap: 1em;
   font-size: 16px;
   & a {
-    color: black;
+    color: var(--text-color);
   }
 }
 
@@ -44,6 +48,7 @@ h2 {
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  color: var(--text-color);
 
   &__information {
     display: flex;
@@ -68,6 +73,10 @@ h2 {
 }
 
 .links {
+  --text-color-hover: var(--text-color);
+  --background: #000;
+  --background-hover: var(--background);
+
   display: flex;
   margin-top: 2rem;
   width: 100%;
@@ -78,13 +87,20 @@ h2 {
     justify-content: center;
     width: 33%;
     border-radius: 16px;
+    background: var(--background);
+    &:hover {
+      background: var(--background-hover);
+    }
   }
   & a {
     display: block;
-    color: black;
+    color: var(--text-color);
     text-decoration: none;
     text-align: center;
     padding: 1em;
     width: 100%;
+    &:hover {
+      color: var(--text-color-hover);
+    }
   }
 }

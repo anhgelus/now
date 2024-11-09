@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{getAssetPath "styles.css"}}" />
         {{template "opengraph-base" .SEO}}
     </head>
-    <body style="{{ .Data.GetBackgroundImage }}">
+    <body style="{{ .Data.GetBackgroundImage }}{{ .Data.GetTextColor }}">
     {{template "body" .Data}}
     <div class="credits">
         <p>Crafted by <a href="https://www.anhgelus.world/" target="_blank">Anhgelus Morhtuuzh</a></p>
