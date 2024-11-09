@@ -23,5 +23,22 @@
         "position": 100
       }
     ]
-  }
+  },
+  "links": [
+    {
+      "link": "https://discord.gg/minecraft",
+      "content": "Minecraft's Discord",
+      "color": "#800080FF"
+    },
+    {
+      "link": "https://github.com/anhgelus",
+      "content": "GitHub",
+      "color": "#800080FF"
+    },
+    {
+      "link": "https://youtube.com/@anhgelus",
+      "content": "YouTube",
+      "color": "#800080FF"
+    }
+  ]
 }

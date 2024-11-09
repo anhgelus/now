@@ -11,9 +11,9 @@
         </div>
         <p class="description">{{ .Description }}</p>
         <div class="links">
-            <div class="link"><a href="">Link 1</a></div>
-            <div class="link"><a href="">Link 2</a></div>
-            <div class="link"><a href="">Link 3</a></div>
+            {{ range $link := .Links }}
+            <div class="link" style="{{ $link.GetBackground }}"><a href="{{ $link.Link }}">{{ $link.Content }}</a></div>
+            {{end}}
         </div>
     </main>
 {{end}}

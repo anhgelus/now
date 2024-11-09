@@ -70,10 +70,11 @@ h2 {
   width: 100%;
   gap: 1rem;
   & .link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: purple;
     width: 33%;
-    padding: 1em;
     border-radius: 16px;
   }
   & a {
@@ -81,5 +82,7 @@ h2 {
     color: black;
     text-decoration: none;
     text-align: center;
+    padding: 1em;
+    width: 100%;
   }
 }

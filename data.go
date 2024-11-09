@@ -2,7 +2,6 @@ package main
 
 import (
 	"html/template"
-	"log/slog"
 	"strconv"
 )
 
@@ -11,6 +10,7 @@ type Data struct {
 	Description     string           `json:"description"`
 	Person          *Person          `json:"person"`
 	BackgroundColor *BackgroundColor `json:"background_color"`
+	Links           []*Link          `json:"links"`
 }
 
 type Person struct {
@@ -28,18 +28,24 @@ type BackgroundColor struct {
 	} `json:"colors"`
 }
 
+type Link struct {
+	Link    string `json:"link"`
+	Content string `json:"content"`
+	Color   string `json:"color"`
+}
+
 func (d *Data) GetBackground() template.CSS {
 	bg := d.BackgroundColor
 	css := "background: " + bg.Type + "-gradient("
-	slog.Info(css)
 	if bg.Type == "linear" {
 		css += strconv.Itoa(int(bg.Angle)) + "deg,"
 	}
-	slog.Info(css)
 	for _, c := range bg.Colors {
 		css += c.Color + " " + strconv.Itoa(int(c.Position)) + "%,"
-		slog.Info(css)
 	}
-	slog.Info(css[:len(css)-1] + ");")
 	return template.CSS(css[:len(css)-1] + ");")
+}
+
+func (l *Link) GetBackground() template.CSS {
+	return template.CSS("background: " + l.Color)
 }
