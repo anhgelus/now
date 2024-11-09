@@ -55,15 +55,23 @@ func main() {
 	}
 	g.Templates = append(g.Templates, "templates/base/*.gohtml")
 
-	t := golatt.Template{
+	home := golatt.Template{
 		Golatt: g,
 		Name:   "index",
 		Title:  data.Person.Name,
 		Data:   &data,
 		URL:    "/",
 	}
+	credits := golatt.Template{
+		Golatt: g,
+		Name:   "credits",
+		Title:  "Credits",
+		Data:   &data,
+		URL:    "/credits",
+	}
 
-	g.HandleFunc("/", t.Handle())
+	g.HandleFunc("/", home.Handle())
+	g.HandleFunc("/credits", credits.Handle())
 
 	g.StartServer(":8000")
 }
