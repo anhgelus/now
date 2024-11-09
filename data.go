@@ -6,17 +6,22 @@ import (
 )
 
 type Data struct {
-	Image           string           `json:"image"`
-	Description     string           `json:"description"`
-	Person          *Person          `json:"person"`
-	BackgroundColor *BackgroundColor `json:"background_color"`
-	Links           []*Link          `json:"links"`
+	Image       string  `json:"image"`
+	Description string  `json:"description"`
+	Person      *Person `json:"person"`
+	Color       *Color  `json:"colors"`
+	Links       []*Link `json:"links"`
 }
 
 type Person struct {
 	Name     string `json:"name"`
 	Pronouns string `json:"pronouns"`
 	Image    string `json:"image"`
+}
+
+type Color struct {
+	Background *BackgroundColor `json:"background"`
+	Text       string           `json:"text"`
 }
 
 type BackgroundColor struct {
@@ -29,13 +34,14 @@ type BackgroundColor struct {
 }
 
 type Link struct {
-	Link    string `json:"link"`
-	Content string `json:"content"`
-	Color   string `json:"color"`
+	Link      string `json:"link"`
+	Content   string `json:"content"`
+	Color     string `json:"color"`
+	TextColor string `json:"text_color"`
 }
 
 func (d *Data) GetBackground() template.CSS {
-	bg := d.BackgroundColor
+	bg := d.Color.Background
 	css := "background: " + bg.Type + "-gradient("
 	if bg.Type == "linear" {
 		css += strconv.Itoa(int(bg.Angle)) + "deg,"
@@ -46,6 +52,14 @@ func (d *Data) GetBackground() template.CSS {
 	return template.CSS(css[:len(css)-1] + ");")
 }
 
+func (d *Data) GetTextColor() template.CSS {
+	return template.CSS("color: " + d.Color.Text + ";")
+}
+
+func (l *Link) GetLinkColor() template.CSS {
+	return template.CSS("color: " + l.TextColor + ";")
+}
+
 func (l *Link) GetBackground() template.CSS {
-	return template.CSS("background: " + l.Color)
+	return template.CSS("background: " + l.Color + ";")
 }

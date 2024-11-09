@@ -6,39 +6,45 @@
     "pronouns": "he/his - some basic things though",
     "image": "pfp.webp"
   },
-  "background_color": {
-    "type": "linear",
-    "angle": 243,
-    "colors": [
-      {
-        "color": "#020024",
-        "position": 0
-      },
-      {
-        "color": "#090979",
-        "position": 40
-      },
-      {
-        "color": "#00d4ff",
-        "position": 100
-      }
-    ]
+  "colors": {
+    "text": "#fff",
+    "background": {
+      "type": "linear",
+      "angle": 243,
+      "colors": [
+        {
+          "color": "#020024",
+          "position": 0
+        },
+        {
+          "color": "#090979",
+          "position": 40
+        },
+        {
+          "color": "#00d4ff",
+          "position": 100
+        }
+      ]
+    }
   },
   "links": [
     {
       "link": "https://discord.gg/minecraft",
       "content": "Minecraft's Discord",
-      "color": "#800080FF"
+      "color": "#800080FF",
+      "text_color": "#fff"
     },
     {
       "link": "https://github.com/anhgelus",
       "content": "GitHub",
-      "color": "#800080FF"
+      "color": "#800080FF",
+      "text_color": "#fff"
     },
     {
       "link": "https://youtube.com/@anhgelus",
       "content": "YouTube",
-      "color": "#800080FF"
+      "color": "#800080FF",
+      "text_color": "#fff"
     }
   ]
 }

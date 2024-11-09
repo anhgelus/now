@@ -1,5 +1,5 @@
 {{define "body"}}
-    <main style="{{ .GetBackground }}">
+    <main style="{{ .GetBackground }}{{ .GetTextColor }}">
         <div class="presentation">
             <figure>
                 <img src="{{ getStaticPath .Person.Image }}" alt="{{ .Person.Name }}'s image">
@@ -12,7 +12,9 @@
         <p class="description">{{ .Description }}</p>
         <div class="links">
             {{ range $link := .Links }}
-            <div class="link" style="{{ $link.GetBackground }}"><a href="{{ $link.Link }}">{{ $link.Content }}</a></div>
+            <div class="link" style="{{ .GetBackground }}">
+                <a href="{{ .Link }}" style="{{ .GetLinkColor }}">{{ .Content }}</a>
+            </div>
             {{end}}
         </div>
     </main>
