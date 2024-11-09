@@ -2,41 +2,58 @@ package main
 
 import (
 	"embed"
+	"encoding/json"
 	"flag"
 	"github.com/anhgelus/golatt"
 	"log/slog"
+	"os"
 )
 
 //go:embed templates
 var templates embed.FS
 
 var (
-	domain string
-	data   string
+	domain   string
+	dataPath string
 )
 
 func init() {
 	flag.StringVar(&domain, "domain", "", "domain to use")
-	flag.StringVar(&data, "data", "", "data to use")
+	flag.StringVar(&dataPath, "data", "", "data to use")
 }
 
 func main() {
 	flag.Parse()
 	if domain == "" {
-		slog.Error("Domain not set. Set it with --domain value")
-		return
+		domain = os.Getenv("NOW_DOMAIN")
+		if domain == "" {
+			slog.Error("Domain not set. Set it with --domain value or with the env NOW_DOMAIN")
+			return
+		}
 	}
-	if data == "" {
-		slog.Error("Data not set. Set it with --data relative path")
-		return
+	if dataPath == "" {
+		dataPath = os.Getenv("NOW_DATA")
+		if dataPath == "" {
+			slog.Error("Data not set. Set it with --data relative path or with the env NOW_DATA")
+			return
+		}
+	}
+	b, err := os.ReadFile(dataPath)
+	if err != nil {
+		panic(err)
+	}
+	var data Data
+	err = json.Unmarshal(b, &data)
+	if err != nil {
+		panic(err)
 	}
 	g := golatt.New(templates)
 	g.DefaultSeoData = &golatt.SeoData{
-		Image:       "",
-		Description: "",
+		Image:       data.Image,
+		Description: data.Description,
 		Domain:      domain,
 	}
-	g.Templates = append(g.Templates, "templates/page/*.gohtml")
+	g.Templates = append(g.Templates, "templates/base/*.gohtml")
 
 	//g.StartServer(":80")
 }

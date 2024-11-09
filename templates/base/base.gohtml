@@ -10,13 +10,7 @@
         {{template "opengraph-base" .SEO}}
     </head>
     <body>
-    {{if .Data.HasNav}}
-        {{template "navbar" .}}
-    {{end}}
     {{template "body" .}}
-    {{if .Data.HasFooter}}
-        {{template "footer" .}}
-    {{end}}
     <script type="module" src="{{getAssetPath "index.js"}}" defer></script>
     </body>
     </html>

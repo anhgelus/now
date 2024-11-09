@@ -1,0 +1,12 @@
+{{define "body"}}
+    <main>
+        <div class="presentation">
+            <figure>
+                <img src="{{ getStaticPath .Person.Image }}" alt="{{ .Person.Name }}'s image">
+            </figure>
+            <h2>{{ .Person.Name }}</h2>
+            <p>{{ .Person.Pronouns }}</p>
+        </div>
+        <p class="description">{{ .Description }}</p>
+    </main>
+{{end}}
