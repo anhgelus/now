@@ -5,5 +5,23 @@
     "name": "Anhgelus Morhtuuzh",
     "pronouns": "he/his - some basic things though",
     "image": "pfp.webp"
+  },
+  "background_color": {
+    "type": "linear",
+    "angle": 243,
+    "colors": [
+      {
+        "color": "#020024",
+        "position": 0
+      },
+      {
+        "color": "#090979",
+        "position": 40
+      },
+      {
+        "color": "#00d4ff",
+        "position": 100
+      }
+    ]
   }
 }
