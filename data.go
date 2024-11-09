@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/anhgelus/golatt"
 	"html/template"
 	"strconv"
 )
@@ -11,6 +12,7 @@ type Data struct {
 	Person      *Person `json:"person"`
 	Color       *Color  `json:"colors"`
 	Links       []*Link `json:"links"`
+	Legal       *Legal  `json:"legal"`
 }
 
 type Person struct {
@@ -40,6 +42,11 @@ type Link struct {
 	TextColor string `json:"text_color"`
 }
 
+type Legal struct {
+	LegalInformationLink string   `json:"legal_information_link"`
+	ImagesSource         []string `json:"images_source"`
+}
+
 func (d *Data) GetBackground() template.CSS {
 	bg := d.Color.Background
 	css := "background: " + bg.Type + "-gradient("
@@ -50,6 +57,10 @@ func (d *Data) GetBackground() template.CSS {
 		css += c.Color + " " + strconv.Itoa(int(c.Position)) + "%,"
 	}
 	return template.CSS(css[:len(css)-1] + ");")
+}
+
+func (d *Data) GetBackgroundImage() template.CSS {
+	return template.CSS("background-image: url(" + golatt.GetStaticPath(d.Image) + ");")
 }
 
 func (d *Data) GetTextColor() template.CSS {

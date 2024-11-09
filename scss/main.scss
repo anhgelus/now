@@ -6,10 +6,14 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .credits {
-  position: fixed;
+  position: absolute;
   bottom: 1em;
   display: flex;
   gap: 1em;
