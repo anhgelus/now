@@ -4,9 +4,16 @@
             <figure>
                 <img src="{{ getStaticPath .Person.Image }}" alt="{{ .Person.Name }}'s image">
             </figure>
-            <h2>{{ .Person.Name }}</h2>
-            <p>{{ .Person.Pronouns }}</p>
+            <div class="presentation__information">
+                <h2>{{ .Person.Name }}</h2>
+                <p>{{ .Person.Pronouns }}</p>
+            </div>
         </div>
         <p class="description">{{ .Description }}</p>
+        <div class="links">
+            <div class="link"><a href="">Link 1</a></div>
+            <div class="link"><a href="">Link 2</a></div>
+            <div class="link"><a href="">Link 3</a></div>
+        </div>
     </main>
 {{end}}

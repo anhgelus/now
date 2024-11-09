@@ -2,6 +2,10 @@
   "name": "now",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "build-sass": "sass --no-source-map --style=compressed scss/main.scss dist/styles.css",
+    "watch-sass": "sass --watch scss/main.scss dist/styles.css"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -9,7 +13,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
+    "reset-css": "^5.0.2",
     "sass": "^1.80.6"
   }
 }
