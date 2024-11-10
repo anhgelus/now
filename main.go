@@ -6,6 +6,7 @@ import (
 	"flag"
 	"github.com/anhgelus/golatt"
 	"log/slog"
+	"net/http"
 	"os"
 )
 
@@ -57,6 +58,10 @@ func main() {
 
 	g.NewTemplate("index", "/", cfg.Person.Name, "", "", &cfg).Handle()
 	g.NewTemplate("credits", "/credits", "Credits", "", "", &cfg).Handle()
+
+	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+	}
 
 	g.StartServer(":80")
 }
