@@ -1,5 +1,8 @@
 @use "../node_modules/reset-css/reset.css";
 
+$bp-mid: 1000px;
+$bp-little: 650px;
+
 :root {
   --text-color: #000
 }
@@ -14,6 +17,9 @@ body {
   background: var(--background-image) center fixed no-repeat;
   background-size: cover;
   color: var(--text-color);
+  @media only screen and (max-width: $bp-little) {
+    background: #000;
+  }
 }
 
 a {
@@ -24,10 +30,22 @@ a {
   position: absolute;
   bottom: 0;
   display: flex;
-  gap: 1em;
+  gap: 1rem;
+  @media only screen and (max-width: $bp-little) {
+    gap: 0;
+    align-items: center;
+    font-size: 14px;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
   font-size: 16px;
   & a {
     color: var(--text-color);
+  }
+  & p {
+    @media only screen and (max-width: $bp-little) {
+      text-align: center;
+    }
   }
 }
 
@@ -38,6 +56,15 @@ main {
   box-shadow: 0 0 70px 2px rgba(0,0,0,0.75);
   & h1, h2, h3 {
     margin: 0;
+  }
+  @media only screen and (max-width: $bp-mid) {
+    width: 80%;
+  }
+  @media only screen and (max-width: $bp-little) {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100%;
+    border-radius: 0;
   }
 }
 
@@ -56,6 +83,9 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  @media only screen and (max-width: $bp-little) {
+    font-size: 1.75rem;
+  }
 }
 
 h3 {
@@ -69,6 +99,9 @@ h3 {
   gap: 2rem;
   margin-bottom: 2rem;
   color: var(--text-color);
+  @media only screen and (max-width: $bp-little) {
+    flex-direction: column;
+  }
 
   &__information {
     display: flex;
@@ -84,6 +117,9 @@ h3 {
   }
   & figure {
     display: inline;
+    @media only screen and (max-width: $bp-little) {
+      margin-top: 2rem;
+    }
     & img {
       height: 128px;
       border-radius: 32px;
@@ -104,11 +140,19 @@ h3 {
   margin-top: 2rem;
   width: 100%;
   gap: 1rem;
+  @media only screen and (max-width: $bp-little) {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
   & .link {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 33%;
+    @media only screen and (max-width: $bp-little) {
+      width: 100%;
+    }
     border-radius: 16px;
     background: var(--background);
     transition: .2s;
