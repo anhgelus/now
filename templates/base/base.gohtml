@@ -10,12 +10,14 @@
         {{template "opengraph-base" .SEO}}
     </head>
     <body style="{{ .Data.GetBackgroundImage }}{{ .Data.GetTextColor }}">
-    {{template "body" .Data}}
-    <div class="credits">
+    <div class="center">
+        {{template "body" .Data}}
+    </div>
+    <footer class="credits">
         <p>Crafted by <a href="https://www.anhgelus.world/" target="_blank">Anhgelus Morhtuuzh</a></p>
         <p><a href="{{ .Data.Legal.LegalInformationLink }}">Legal information</a></p>
         <p><a href="/credits">Credits</a></p>
-    </div>
+    </footer>
     <script type="module" src="{{getAssetPath "index.js"}}" defer></script>
     </body>
     </html>
