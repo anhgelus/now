@@ -4,12 +4,18 @@ $bp-mid: 1000px;
 $bp-little: 650px;
 
 :root {
-  --text-color: #000
+  --text-color: #000;
+}
+
+@font-face {
+  font-family: "custom";
+  src: url("/static/font.woff2");
 }
 
 body {
   --background-image: ;
   font-size: 18px;
+  font-family: "custom", "serif";
   background: var(--background-image) center fixed no-repeat;
   background-size: cover;
   color: var(--text-color);
