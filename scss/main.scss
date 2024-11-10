@@ -111,8 +111,10 @@ h3 {
     width: 33%;
     border-radius: 16px;
     background: var(--background);
+    transition: .2s;
     &:hover {
       background: var(--background-hover);
+      transition: .2s;
     }
   }
   & a {
@@ -122,8 +124,10 @@ h3 {
     text-align: center;
     padding: 1em;
     width: 100%;
+    transition: .2s;
     &:hover {
       color: var(--text-color-hover);
+      transition: .2s;
     }
   }
 }
