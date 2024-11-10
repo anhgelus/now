@@ -4,7 +4,7 @@
     <meta property="og:title" content="{{.Title}}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://{{.Domain}}{{.URL}}" />
-    <meta property="og:image" content="https://{{.Domain}}{{.Image}}" />
+    <meta property="og:image" content="https://{{.Domain}}{{ getStaticPath .Image}}" />
     <meta property="og:description" content="{{.Description}}" />
     <meta property="og:local" content="fr_FR" />
     <meta property="og:site_name" content="Architects Land" />
@@ -14,5 +14,5 @@
     <meta property="twitter:url" content="https://{{.Domain}}{{.URL}}/" />
     <meta name="twitter:title" content="{{.Title}}" />
     <meta name="twitter:description" content="{{.Description}}" />
-    <meta name="twitter:image" content="https://{{.Domain}}{{.Image}}" />
+    <meta name="twitter:image" content="https://{{.Domain}}{{getStaticPath .Image}}" />
 {{end}}
