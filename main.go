@@ -73,5 +73,5 @@ func main() {
 	g.HandleFunc("/", home.Handle())
 	g.HandleFunc("/credits", credits.Handle())
 
-	g.StartServer(":8000")
+	g.StartServer(":80")
 }

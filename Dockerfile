@@ -19,4 +19,6 @@ RUN go mod tidy && go mod build -o app .
 ENV NOW_DOMAIN=""
 ENV NOW_DATA=""
 
+EXPOSE 80
+
 CMD ./app -domain $NOW_DOMAIN -data $NOW_DATA
