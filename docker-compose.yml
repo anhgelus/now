@@ -3,7 +3,7 @@ services:
     build: .
     environment:
       NOW_DOMAIN: "example.org"
-      NOW_DATA: "data.json"
+      NOW_CONFIG: "config.json"
     volumes:
       - ./data.json:/app/data.json:ro
       - ./assets:/app/public:ro

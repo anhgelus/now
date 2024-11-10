@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-type Data struct {
+type Config struct {
 	Image       string  `json:"image"`
 	Description string  `json:"description"`
 	Person      *Person `json:"person"`
@@ -49,8 +49,8 @@ type Legal struct {
 	ImagesSource         []string `json:"images_source"`
 }
 
-func (d *Data) GetBackground() template.CSS {
-	bg := d.Color.Background
+func (c *Config) GetBackground() template.CSS {
+	bg := c.Color.Background
 	css := "background: " + bg.Type + "-gradient("
 	if bg.Type == "linear" {
 		css += strconv.Itoa(int(bg.Angle)) + "deg,"
@@ -61,12 +61,12 @@ func (d *Data) GetBackground() template.CSS {
 	return template.CSS(css[:len(css)-1] + ");")
 }
 
-func (d *Data) GetBackgroundImage() template.CSS {
-	return template.CSS("--background-image: url(" + golatt.GetStaticPath(d.Image) + ");")
+func (c *Config) GetBackgroundImage() template.CSS {
+	return template.CSS("--background-image: url(" + golatt.GetStaticPath(c.Image) + ");")
 }
 
-func (d *Data) GetTextColor() template.CSS {
-	return template.CSS("--text-color: " + d.Color.Text + ";")
+func (c *Config) GetTextColor() template.CSS {
+	return template.CSS("--text-color: " + c.Color.Text + ";")
 }
 
 func (l *Link) GetLinkColor() template.CSS {

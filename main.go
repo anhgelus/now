@@ -13,13 +13,13 @@ import (
 var templates embed.FS
 
 var (
-	domain   string
-	dataPath string
+	domain     string
+	configPath string
 )
 
 func init() {
 	flag.StringVar(&domain, "domain", "", "domain to use")
-	flag.StringVar(&dataPath, "data", "", "data to use")
+	flag.StringVar(&configPath, "config", "", "config to use")
 }
 
 func main() {
@@ -31,26 +31,26 @@ func main() {
 			return
 		}
 	}
-	if dataPath == "" {
-		dataPath = os.Getenv("NOW_DATA")
-		if dataPath == "" {
-			slog.Error("Data not set. Set it with --data relative path or with the env NOW_DATA")
+	if configPath == "" {
+		configPath = os.Getenv("NOW_DATA")
+		if configPath == "" {
+			slog.Error("Config not set. Set it with --cfg relative path or with the env NOW_DATA")
 			return
 		}
 	}
-	b, err := os.ReadFile(dataPath)
+	b, err := os.ReadFile(configPath)
 	if err != nil {
 		panic(err)
 	}
-	var data Data
-	err = json.Unmarshal(b, &data)
+	var cfg Config
+	err = json.Unmarshal(b, &cfg)
 	if err != nil {
 		panic(err)
 	}
 	g := golatt.New(templates)
 	g.DefaultSeoData = &golatt.SeoData{
-		Image:       data.Image,
-		Description: data.Description,
+		Image:       cfg.Image,
+		Description: cfg.Description,
 		Domain:      domain,
 	}
 	g.Templates = append(g.Templates, "templates/base/*.gohtml")
@@ -58,15 +58,15 @@ func main() {
 	home := golatt.Template{
 		Golatt: g,
 		Name:   "index",
-		Title:  data.Person.Name,
-		Data:   &data,
+		Title:  cfg.Person.Name,
+		Data:   &cfg,
 		URL:    "/",
 	}
 	credits := golatt.Template{
 		Golatt: g,
 		Name:   "credits",
 		Title:  "Credits",
-		Data:   &data,
+		Data:   &cfg,
 		URL:    "/credits",
 	}
 
