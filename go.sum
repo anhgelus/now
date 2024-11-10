@@ -1,4 +1,6 @@
 github.com/anhgelus/golatt v0.1.0 h1:Lb6wCtbOmIE/p/wlDeFzuFuR++twPx+fHMNVDGhqjXk=
 github.com/anhgelus/golatt v0.1.0/go.mod h1:Lgyy/Tm9A3w1ft72mZOUxl/p+4G2/WB3qxoXTv7Y4y8=
+github.com/anhgelus/golatt v0.2.0 h1:tdgrx3K61mVYBMy9CNhTheSIV8lPWBl/JjeDIHmz9eg=
+github.com/anhgelus/golatt v0.2.0/go.mod h1:Lgyy/Tm9A3w1ft72mZOUxl/p+4G2/WB3qxoXTv7Y4y8=
 github.com/gorilla/mux v1.8.1 h1:TuBL49tXwgrFYWhqrNgrUNEY92u81SPhu7sTdzQEiWY=
 github.com/gorilla/mux v1.8.1/go.mod h1:AKf9I4AEqPTmMytcMc0KkNouC66V3BtZ4qD5fmWSiMQ=
