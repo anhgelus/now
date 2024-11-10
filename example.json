@@ -59,6 +59,7 @@
     "images_source": [
       "Profile picture: John Smith for example.org",
       "Background: John Smith 2 for another.example.org"
-    ]
+    ],
+    "font_source": "serif by ?"
   }
 }

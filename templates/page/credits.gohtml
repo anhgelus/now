@@ -10,5 +10,7 @@
         {{ range $s := .Legal.ImagesSource }}
             <p>{{ . }}</p>
         {{ end }}
+        <h3>Font credits</h3>
+        <p>{{ .Legal.FontSource }}</p>
     </div>
 {{end}}

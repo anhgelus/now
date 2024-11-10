@@ -47,6 +47,7 @@ type Link struct {
 type Legal struct {
 	LegalInformationLink string   `json:"legal_information_link"`
 	ImagesSource         []string `json:"images_source"`
+	FontSource           string   `json:"font_source"`
 }
 
 func (c *Config) GetBackground() template.CSS {
