@@ -98,6 +98,7 @@ h1 {
 
 h2 {
   font-size: 2rem;
+  font-weight: bold;
   @media only screen and (max-width: $bp-little) {
     font-size: 1.75rem;
   }
@@ -108,7 +109,7 @@ h3 {
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .presentation {
@@ -214,6 +215,9 @@ h4 {
 
 .tag {
   cursor: pointer;
+  & h4:hover {
+    text-decoration: underline;
+  }
   &.active {
     & h4 {
       margin-bottom: 0.5rem;
