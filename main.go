@@ -59,7 +59,13 @@ func main() {
 	g.Templates = append(g.Templates, "templates/base/*.gohtml")
 
 	g.NewTemplate("index", "/", cfg.Person.Name, "", "", &cfg).Handle()
-	g.NewTemplate("credits", "/credits", "Credits", "", "", &cfg).Handle()
+	g.NewTemplate("credits",
+		"/credits",
+		"Credits",
+		"",
+		"Credits of the "+cfg.Person.Name+"'s Now page",
+		&cfg).
+		Handle()
 
 	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
