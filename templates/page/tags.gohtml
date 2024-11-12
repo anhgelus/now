@@ -1,0 +1,13 @@
+{{define "body"}}
+    <main style="{{ .GetBackground }}">
+        <h2>Tags</h2>
+        <div class="tags">
+            {{ range $tag := .Person.Tags }}
+                <div class="tag">
+                    <h4>{{ .Name }}</h4>
+                    <p>{{ .Description }}</p>
+                </div>
+            {{ end }}
+        </div>
+    </main>
+{{end}}

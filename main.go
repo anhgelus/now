@@ -63,7 +63,14 @@ func main() {
 		"/credits",
 		"Credits",
 		"",
-		"Credits of the "+cfg.Person.Name+"'s Now page",
+		"Credits of "+cfg.Person.Name+"'s Now page",
+		&cfg).
+		Handle()
+	g.NewTemplate("tags",
+		"/tags",
+		"Tags",
+		"",
+		"Tags of "+cfg.Person.Name+"'s Now page",
 		&cfg).
 		Handle()
 

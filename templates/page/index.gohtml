@@ -9,7 +9,10 @@
                 <p>{{ .Person.Pronouns }}</p>
             </div>
         </div>
-        <p class="description">{{ .Description }}</p>
+        <p class="description">
+            {{ .Description }}
+            <a href="/tags">More information...</a>
+        </p>
         <div class="links">
             {{ range $link := .Links }}
             <div class="link" style="{{ .GetBackground }}">

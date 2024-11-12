@@ -19,6 +19,12 @@ type Person struct {
 	Name     string `json:"name"`
 	Pronouns string `json:"pronouns"`
 	Image    string `json:"image"`
+	Tags     []*Tag `json:"tags"`
+}
+
+type Tag struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
 }
 
 type Color struct {
