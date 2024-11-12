@@ -63,5 +63,5 @@ func main() {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 
-	g.StartServer(":80")
+	g.StartServer(":8000")
 }

@@ -126,6 +126,9 @@ h3 {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    @media only screen and (max-width: $bp-little) {
+      margin-right: 0;
+    }
     & p {
       margin: 0;
     }
