@@ -107,6 +107,10 @@ h3 {
   font-size: 1.5rem;
 }
 
+h4 {
+  font-size: 1.25rem;
+}
+
 .presentation {
   position: relative;
   display: flex;
@@ -190,6 +194,32 @@ h3 {
     &:hover {
       color: var(--text-color-hover);
       transition: .2s;
+    }
+  }
+}
+
+.tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1rem;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  & h4 {
+    //text-align: center;
+  }
+  & p {
+    display: none;
+  }
+}
+
+.tag {
+  cursor: pointer;
+  &.active {
+    & h4 {
+      margin-bottom: 0.5rem;
+    }
+    & p {
+      display: block;
     }
   }
 }
