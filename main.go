@@ -16,11 +16,13 @@ var templates embed.FS
 var (
 	domain     string
 	configPath string
+	dev        bool
 )
 
 func init() {
 	flag.StringVar(&domain, "domain", "", "domain to use")
 	flag.StringVar(&configPath, "config", "", "config to use")
+	flag.BoolVar(&dev, "dev", false, "dev mode enabled")
 }
 
 func main() {
@@ -63,5 +65,9 @@ func main() {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 
-	g.StartServer(":8000")
+	if dev {
+		g.StartServer(":8000")
+	} else {
+		g.StartServer(":80")
+	}
 }
