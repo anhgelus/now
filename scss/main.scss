@@ -1,7 +1,6 @@
 @use "../node_modules/reset-css/reset.css";
-
-$bp-mid: 1000px;
-$bp-little: 650px;
+@use "tag";
+@import "vars";
 
 :root {
   --text-color: #000;
@@ -69,6 +68,9 @@ main {
   padding: 2rem;
   border-radius: 32px;
   box-shadow: 0 0 70px 2px rgba(0,0,0,0.75);
+  transition: .3s;
+  max-height: 75vh;
+  overflow: auto;
   & h1, h2, h3 {
     margin: 0;
   }
@@ -79,6 +81,7 @@ main {
     box-sizing: border-box;
     width: 100%;
     min-height: 100vh;
+    max-height: none;
     border-radius: 0;
   }
 }
@@ -195,35 +198,6 @@ h4 {
     &:hover {
       color: var(--text-color-hover);
       transition: .2s;
-    }
-  }
-}
-
-.tags {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-top: 1rem;
-  column-gap: 2rem;
-  row-gap: 1rem;
-  & h4 {
-    //text-align: center;
-  }
-  & p {
-    display: none;
-  }
-}
-
-.tag {
-  cursor: pointer;
-  & h4:hover {
-    text-decoration: underline;
-  }
-  &.active {
-    & h4 {
-      margin-bottom: 0.5rem;
-    }
-    & p {
-      display: block;
     }
   }
 }

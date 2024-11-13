@@ -1,0 +1,42 @@
+@import "vars";
+
+.tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1rem;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  @media only screen and (max-width: $bp-little) {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
+  & h4 {
+    @media only screen and (max-width: $bp-little) {
+      margin-bottom: 0.5rem;
+    }
+  }
+  & p {
+    display: none;
+    @media only screen and (max-width: $bp-little) {
+      display: block;
+    }
+  }
+}
+
+.tag {
+  cursor: pointer;
+  @media only screen and (max-width: $bp-little) {
+    cursor: auto;
+  }
+  & h4:hover {
+    text-decoration: underline;
+  }
+  &.active {
+    & h4 {
+      margin-bottom: 0.5rem;
+    }
+    & p {
+      display: block;
+    }
+  }
+}

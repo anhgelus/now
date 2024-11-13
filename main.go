@@ -79,6 +79,7 @@ func main() {
 	}
 
 	if dev {
+		slog.Info("Starting on http://localhost:8000/")
 		g.StartServer(":8000")
 	} else {
 		g.StartServer(":80")
