@@ -1,6 +1,6 @@
 @use "../node_modules/reset-css/reset.css";
 @use "tag";
-@import "vars";
+@use "vars";
 
 :root {
   --text-color: #000;
@@ -18,7 +18,7 @@ body {
   background: var(--background-image) center fixed no-repeat;
   background-size: cover;
   color: var(--text-color);
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     background: #000;
   }
 }
@@ -29,7 +29,7 @@ body {
   justify-content: center;
   height: 95vh;
   width: 100%;
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     min-height: 100vh;
     height: auto;
   }
@@ -44,7 +44,7 @@ a {
   gap: 1rem;
   font-size: 16px;
   margin-left: 1rem;
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     gap: 0;
     align-items: center;
     font-size: 14px;
@@ -57,7 +57,7 @@ a {
     color: var(--text-color);
   }
   & p {
-    @media only screen and (max-width: $bp-little) {
+    @media only screen and (max-width: vars.$bp-little) {
       text-align: center;
     }
   }
@@ -74,10 +74,10 @@ main {
   & h1, h2, h3 {
     margin: 0;
   }
-  @media only screen and (max-width: $bp-mid) {
+  @media only screen and (max-width: vars.$bp-mid) {
     width: 80%;
   }
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     box-sizing: border-box;
     width: 100%;
     min-height: 100vh;
@@ -102,7 +102,7 @@ h1 {
 h2 {
   font-size: 2rem;
   font-weight: bold;
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     font-size: 1.75rem;
   }
 }
@@ -122,7 +122,7 @@ h4 {
   gap: 2rem;
   margin-bottom: 2rem;
   color: var(--text-color);
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     flex-direction: column;
   }
 
@@ -134,7 +134,7 @@ h4 {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    @media only screen and (max-width: $bp-little) {
+    @media only screen and (max-width: vars.$bp-little) {
       margin-right: 0;
     }
     & p {
@@ -143,7 +143,7 @@ h4 {
   }
   & figure {
     display: inline;
-    @media only screen and (max-width: $bp-little) {
+    @media only screen and (max-width: vars.$bp-little) {
       margin-top: 2rem;
     }
     & img {
@@ -166,7 +166,7 @@ h4 {
   margin-top: 2rem;
   width: 100%;
   gap: 1rem;
-  @media only screen and (max-width: $bp-little) {
+  @media only screen and (max-width: vars.$bp-little) {
     flex-direction: column;
     gap: 0.5rem;
     align-items: center;
@@ -176,12 +176,13 @@ h4 {
     align-items: center;
     justify-content: center;
     width: 33%;
-    @media only screen and (max-width: $bp-little) {
-      width: 100%;
-    }
+    box-shadow: 0 0 50px -20px rgba(0,0,0,0.75);
     border-radius: 16px;
     background: var(--background);
     transition: .2s;
+    @media only screen and (max-width: vars.$bp-little) {
+      width: 100%;
+    }
     &:hover {
       background: var(--background-hover);
       transition: .2s;
