@@ -11,14 +11,16 @@
         </div>
         <p class="description">
             {{ .Description }}
-            <a href="/tags">More information...</a>
         </p>
         <div class="links">
             {{ range $link := .Links }}
             <div class="link" style="{{ .GetBackground }}">
                 <a href="{{ .Link }}" style="{{ .GetLinkColor }}">{{ .Content }}</a>
             </div>
-            {{end}}
+            {{ end }}
+            <div class="link" style="--background: #000;--background-hover: #333;">
+                <a href="/tags" style="--text-color: #ddd;--text-color-hover: #fff;">Tags</a>
+            </div>
         </div>
     </main>
 {{end}}

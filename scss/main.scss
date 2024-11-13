@@ -162,12 +162,13 @@ h4 {
   --background: #000;
   --background-hover: var(--background);
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 2rem;
   width: 100%;
   gap: 1rem;
   @media only screen and (max-width: vars.$bp-little) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 0.5rem;
     align-items: center;
   }
@@ -175,7 +176,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 33%;
+    width: 100%;
     box-shadow: 0 0 50px -20px rgba(0,0,0,0.75);
     border-radius: 16px;
     background: var(--background);
