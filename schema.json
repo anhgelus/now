@@ -1,0 +1,198 @@
+{
+  "type": "object",
+  "properties": {
+    "colors": {
+      "type": "object",
+      "properties": {
+        "background": {
+          "type": "object",
+          "properties": {
+            "angle": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0,
+              "maximum": 359
+            },
+            "colors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "color",
+                  "position"
+                ]
+              }
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "angle",
+            "colors"
+          ]
+        },
+        "buttons": {
+          "type": "object",
+          "properties": {
+            "background": {
+              "type": "string"
+            },
+            "background_hover": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "text_hover": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "text",
+            "text_hover",
+            "background",
+            "background_hover"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "background",
+        "buttons",
+        "text"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "legal": {
+      "type": "object",
+      "properties": {
+        "font_source": {
+          "type": "string"
+        },
+        "images_source": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "legal_information_link": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "legal_information_link",
+        "images_source",
+        "font_source"
+      ]
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string"
+          },
+          "color_hover": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "link": {
+            "type": "string"
+          },
+          "text_color": {
+            "type": "string"
+          },
+          "text_color_hover": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "link",
+          "content",
+          "color",
+          "text_color",
+          "color_hover",
+          "text_color_hover"
+        ]
+      }
+    },
+    "person": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pronouns": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "description"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "pronouns",
+        "image",
+        "tags"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "image",
+    "description",
+    "person",
+    "colors",
+    "links",
+    "legal"
+  ]
+}

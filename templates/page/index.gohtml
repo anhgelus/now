@@ -14,9 +14,9 @@
         </p>
         <div class="links">
             {{ range $link := .Links }}
-            <div class="link" style="{{ .GetBackground }}">
-                <a href="{{ .Link }}" style="{{ .GetLinkColor }}">{{ .Content }}</a>
-            </div>
+                <div class="link" style="{{ .GetBackground }}">
+                    <a href="{{ .Link }}" style="{{ .GetLinkColor }}">{{ .Content }}</a>
+                </div>
             {{ end }}
             <div class="link" style="{{ .Color.Button.GetBackground }}">
                 <a href="/tags" style="{{ .Color.Button.GetTextColor }}">Tags</a>
