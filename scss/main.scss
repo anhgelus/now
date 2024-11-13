@@ -166,10 +166,11 @@ h4 {
   grid-template-columns: repeat(3, 1fr);
   margin-top: 2rem;
   width: 100%;
-  gap: 1rem;
+  column-gap: 1rem;
+  row-gap: 0.5rem;
   @media only screen and (max-width: vars.$bp-little) {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    column-gap: 0.5rem;
     align-items: center;
   }
   & .link {
