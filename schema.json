@@ -72,13 +72,17 @@
         },
         "text": {
           "type": "string"
+        },
+        "tag_hover": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
       "required": [
         "background",
         "buttons",
-        "text"
+        "text",
+        "tag_hover"
       ]
     },
     "description": {

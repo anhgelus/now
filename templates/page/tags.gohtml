@@ -1,7 +1,7 @@
 {{define "body"}}
     <main style="{{ .GetBackground }}">
         <h2>Tags</h2>
-        <div class="tags">
+        <div class="tags" style="{{ .Color.GetTagColor }}">
             {{ range $tag := .Person.Tags }}
                 <div class="tag">
                     <h4>{{ .Name }}</h4>

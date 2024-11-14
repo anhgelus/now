@@ -73,6 +73,7 @@ main {
   transition: .3s;
   max-height: 75vh;
   overflow: auto;
+  scrollbar-width: thin;
   & h1, h2, h3 {
     margin: 0;
   }

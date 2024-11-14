@@ -1,7 +1,7 @@
 function setupEvents() {
     document.querySelectorAll<HTMLElement>(".tag")?.forEach(t => {
         t.addEventListener("click", _ => {
-            t.classList.toggle("active")
+            // t.classList.toggle("active")
         })
     })
 

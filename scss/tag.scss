@@ -16,20 +16,17 @@
     }
   }
   & p {
-    display: none;
-    @media only screen and (max-width: vars.$bp-little) {
-      display: block;
-    }
+    display: block;
+    margin-top: 0.5rem;
   }
 }
 
 .tag {
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 16px;
   @media only screen and (max-width: vars.$bp-little) {
     cursor: auto;
-  }
-  & h4:hover {
-    text-decoration: underline;
   }
   &.active {
     & h4 {
@@ -37,6 +34,12 @@
     }
     & p {
       display: block;
+    }
+  }
+  &:hover {
+    background: var(--tag-hover);
+    & h4 {
+      font-weight: bold;
     }
   }
 }

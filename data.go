@@ -31,6 +31,7 @@ type Color struct {
 	Background *BackgroundColor `json:"background"`
 	Button     *ButtonColor     `json:"buttons"`
 	Text       string           `json:"text"`
+	TagHover   string           `json:"tag_hover"`
 }
 
 type BackgroundColor struct {
@@ -86,4 +87,8 @@ func (b *ButtonColor) GetTextColor() template.CSS {
 
 func (b *ButtonColor) GetBackground() template.CSS {
 	return template.CSS("--background: " + b.Background + ";--background-hover: " + b.BackgroundHover + ";")
+}
+
+func (t *Color) GetTagColor() template.CSS {
+	return template.CSS("--tag-hover: " + t.TagHover + ";")
 }
