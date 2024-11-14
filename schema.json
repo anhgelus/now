@@ -115,33 +115,17 @@
       "items": {
         "type": "object",
         "properties": {
-          "color": {
-            "type": "string"
-          },
-          "color_hover": {
-            "type": "string"
-          },
           "content": {
             "type": "string"
           },
           "link": {
-            "type": "string"
-          },
-          "text_color": {
-            "type": "string"
-          },
-          "text_color_hover": {
             "type": "string"
           }
         },
         "additionalProperties": false,
         "required": [
           "link",
-          "content",
-          "color",
-          "text_color",
-          "color_hover",
-          "text_color_hover"
+          "content"
         ]
       }
     },

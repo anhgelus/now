@@ -50,12 +50,8 @@ type ButtonColor struct {
 }
 
 type Link struct {
-	Link           string `json:"link"`
-	Content        string `json:"content"`
-	Color          string `json:"color"`
-	TextColor      string `json:"text_color"`
-	ColorHover     string `json:"color_hover"`
-	TextColorHover string `json:"text_color_hover"`
+	Link    string `json:"link"`
+	Content string `json:"content"`
 }
 
 type Legal struct {
@@ -90,12 +86,4 @@ func (b *ButtonColor) GetTextColor() template.CSS {
 
 func (b *ButtonColor) GetBackground() template.CSS {
 	return template.CSS("--background: " + b.Background + ";--background-hover: " + b.BackgroundHover + ";")
-}
-
-func (l *Link) GetLinkColor() template.CSS {
-	return template.CSS("--text-color: " + l.TextColor + ";--text-color-hover: " + l.TextColorHover + ";")
-}
-
-func (l *Link) GetBackground() template.CSS {
-	return template.CSS("--background: " + l.Color + ";--background-hover: " + l.ColorHover + ";")
 }

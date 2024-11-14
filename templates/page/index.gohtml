@@ -12,14 +12,14 @@
         <p class="description">
             {{ .Description }}
         </p>
-        <div class="links">
+        <div class="links" style="{{ .Color.Button.GetBackground }}{{ .Color.Button.GetTextColor }}">
             {{ range $link := .Links }}
-                <div class="link" style="{{ .GetBackground }}">
-                    <a href="{{ .Link }}" style="{{ .GetLinkColor }}">{{ .Content }}</a>
+                <div class="link">
+                    <a href="{{ .Link }}">{{ .Content }}</a>
                 </div>
             {{ end }}
-            <div class="link" style="{{ .Color.Button.GetBackground }}">
-                <a href="/tags" style="{{ .Color.Button.GetTextColor }}">Tags</a>
+            <div class="link">
+                <a href="/tags">Tags</a>
             </div>
         </div>
     </main>
