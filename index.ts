@@ -28,8 +28,20 @@ function changePage(href: string) {
             if (distMain === null || currentMain === null) document.body = doc.body
             else currentMain.innerHTML = distMain.innerHTML
             setupEvents()
+            scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth"
+            })
         })
 }
 
-window.addEventListener("popstate", e => window.location.reload())
+window.addEventListener("popstate", _ => {
+    window.location.reload()
+    scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    })
+})
 setupEvents()
