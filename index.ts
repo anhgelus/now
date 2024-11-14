@@ -1,7 +1,9 @@
 function setupEvents() {
     document.querySelectorAll<HTMLElement>(".tag")?.forEach(t => {
         t.addEventListener("click", _ => {
-            // t.classList.toggle("active")
+            const link = t.getAttribute("data-href")
+            if (link === null || link === "") return
+            window.open(link)
         })
     })
 

@@ -25,6 +25,7 @@ type Person struct {
 type Tag struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
+	Link        string `json:"link"`
 }
 
 type Color struct {

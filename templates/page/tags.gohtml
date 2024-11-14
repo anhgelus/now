@@ -3,7 +3,7 @@
         <h2>Tags</h2>
         <div class="tags" style="{{ .Color.GetTagColor }}">
             {{ range $tag := .Person.Tags }}
-                <div class="tag">
+                <div class="tag" data-href="{{ .Link }}" title="{{ .Link }}">
                     <h4>{{ .Name }}</h4>
                     <p>{{ .Description }}</p>
                 </div>
