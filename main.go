@@ -59,11 +59,11 @@ func main() {
 	g.Templates = append(g.Templates, "templates/base/*.gohtml")
 
 	g.NewTemplate("index", "/", cfg.Person.Name, "", "", &cfg).Handle()
-	g.NewTemplate("credits",
-		"/credits",
-		"Credits",
+	g.NewTemplate("legal",
+		"/legal",
+		"Legal things",
 		"",
-		"Credits of "+cfg.Person.Name+"'s Now page",
+		"Legal information about "+cfg.Person.Name+"'s Now page",
 		&cfg).
 		Handle()
 	g.NewTemplate("tags",
