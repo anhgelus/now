@@ -12,7 +12,7 @@
         <p class="description">
             {{ .Description }}
         </p>
-        <div class="links" style="{{ .Color.Button.GetBackground }}{{ .Color.Button.GetTextColor }}">
+        <nav class="links" style="{{ .Color.Button.GetBackground }}{{ .Color.Button.GetTextColor }}">
             {{ range $link := .Links }}
                 <div class="link">
                     <a href="{{ .Link }}">{{ .Content }}</a>
@@ -21,6 +21,6 @@
             <div class="link">
                 <a href="/tags">Tags</a>
             </div>
-        </div>
+        </nav>
     </main>
 {{end}}

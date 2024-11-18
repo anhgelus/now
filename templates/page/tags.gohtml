@@ -1,6 +1,11 @@
 {{define "body"}}
     <main style="{{ .GetBackground }}">
-        <h2>Tags</h2>
+        <div class="header">
+            <h2>Tags</h2>
+            <nav>
+                <a href="/">Home</a>
+            </nav>
+        </div>
         <div class="tags" style="{{ .Color.GetTagColor }}">
             {{ range $tag := .Person.Tags }}
                 <div class="tag" data-href="{{ .Link }}" title="{{ .Link }}">
