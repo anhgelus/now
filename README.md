@@ -4,7 +4,7 @@ Self-hostable bio page website!
 
 Lightweight and heavily customizable Go application!
 
-![Screenshot of the example config](./example.webp)
+![Screenshot of the example config](./example.jpg)
 
 ## Config
 
