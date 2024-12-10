@@ -6,8 +6,6 @@
                 <a href="/">Home</a>
             </nav>
         </div>
-        {{ range $content := .Content }}
-            {{ .Get }}
-        {{ end }}
+        {{ .GetContent }}
     </main>
 {{end}}

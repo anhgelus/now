@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/anhgelus/golatt"
 	"html/template"
 	"log/slog"
@@ -16,6 +17,7 @@ const (
 	ParagraphContentType   = "paragraph"
 	ListContentType        = "list"
 	OrderedListContentType = "ordered_list"
+	ButtonsContentType     = "links"
 )
 
 type ConfigData interface {
@@ -172,7 +174,15 @@ func (p *CustomPage) GetBackground() template.CSS {
 	return p.Color.GetBackground()
 }
 
-func (c *CustomContent) Get() template.HTML {
+func (p *CustomPage) GetContent() template.HTML {
+	var res template.HTML
+	for _, c := range p.Content {
+		res += c.Get(p)
+	}
+	return res
+}
+
+func (c *CustomContent) Get(p *CustomPage) template.HTML {
 	if c.Type == TitleContentType {
 		return template.HTML("<h2>" + c.Content + "</h2>")
 	} else if c.Type == SubtitleContentType {
@@ -191,12 +201,36 @@ func (c *CustomContent) Get() template.HTML {
 	} else if c.Type == OrderedListContentType {
 		v := ""
 		for _, s := range strings.Split(c.Content, "--") {
-			if len(strings.Trim(s, " ")) == 0 {
+			if len(strings.TrimSpace(s)) == 0 {
 				continue
 			}
-			v += "<li>" + strings.Trim(s, " ") + "</li>"
+			v += "<li>" + strings.TrimSpace(s) + "</li>"
 		}
 		return template.HTML("<ol>" + v + "</ol>")
+	} else if c.Type == ButtonsContentType {
+		// [Bonsoir](/hello) -- [Bonjour](/not_hello)
+		v := ""
+		for _, s := range strings.Split(c.Content, "--") {
+			if len(strings.TrimSpace(s)) == 0 {
+				continue
+			}
+			sp := strings.Split(s, "](")
+			if len(sp) != 2 {
+				slog.Warn("Invalid button", "s", s)
+				continue
+			}
+			url := strings.TrimSpace(sp[1])
+			v += fmt.Sprintf(
+				`<div class="link"><a href="%s">%s</a></div>`,
+				url[:len(url)-1],
+				strings.TrimSpace(sp[0])[1:],
+			)
+		}
+		return template.HTML(fmt.Sprintf(
+			`<nav class="links" style="%s">%s</nav>`,
+			p.Color.Button.GetBackground()+p.Color.Button.GetTextColor(),
+			v,
+		))
 	}
 	slog.Warn("Unknown type", "type", c.Type, "value", c.Content)
 	return ""
