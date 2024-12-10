@@ -1,6 +1,11 @@
 {{define "body"}}
     <main class="custom-page" style="{{ .GetBackground }}">
-        <h2>{{ .Title }}</h2>
+        <div class="header">
+            <h2>{{ .Title }}</h2>
+            <nav>
+                <a href="/">Home</a>
+            </nav>
+        </div>
         {{ range $content := .Content }}
             {{ .Get }}
         {{ end }}
