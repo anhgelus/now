@@ -3,7 +3,8 @@ function setupEvents() {
         t.addEventListener("click", _ => {
             const link = t.getAttribute("data-href")
             if (link === null || link === "") return
-            window.open(link)
+            if (!link.startsWith(window.location.origin) && link.startsWith("https://")) window.open(link)
+            else changePage(link)
         })
     })
 
