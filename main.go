@@ -79,6 +79,7 @@ func main() {
 		Handle()
 
 	for _, cp := range customPages {
+		slog.Info("Creating custom page...", "title", cp.Title, "uri", cp.URI)
 		g.NewTemplate("custom_page",
 			cp.URI,
 			cp.Title,

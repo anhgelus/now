@@ -177,7 +177,7 @@
         "tags"
       ]
     },
-    "custom_page": {
+    "custom_pages": {
       "type": "array"
     }
   },

@@ -18,6 +18,12 @@ const (
 	OrderedListContentType = "ordered_list"
 )
 
+type ConfigData interface {
+	GetTextColor() template.CSS
+	GetBackground() template.CSS
+	GetBackgroundImage() template.CSS
+}
+
 type Config struct {
 	Image       string   `json:"image"`
 	Description string   `json:"description"`
@@ -76,15 +82,7 @@ type Legal struct {
 }
 
 func (c *Config) GetBackground() template.CSS {
-	bg := c.Color.Background
-	css := "background: " + bg.Type + "-gradient("
-	if bg.Type == "linear" {
-		css += strconv.Itoa(int(bg.Angle)) + "deg,"
-	}
-	for _, c := range bg.Colors {
-		css += c.Color + " " + strconv.Itoa(int(c.Position)) + "%,"
-	}
-	return template.CSS(css[:len(css)-1] + ");")
+	return c.Color.GetBackground()
 }
 
 func (c *Config) GetBackgroundImage() template.CSS {
@@ -115,6 +113,7 @@ type Content interface {
 
 func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 	if c.CustomPages == nil {
+		println("null")
 		return nil, nil
 	}
 	var pages []*CustomPage
@@ -123,18 +122,30 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 		if err != nil {
 			return nil, err
 		}
-		var p *CustomPage
-		err = json.Unmarshal(b, p)
+		var p CustomPage
+		err = json.Unmarshal(b, &p)
 		if err != nil {
 			return nil, err
 		}
-		pages = append(pages, p)
+		pages = append(pages, &p)
 	}
 	return pages, nil
 }
 
 func (t *Color) GetTextColor() template.CSS {
 	return template.CSS("--text-color: " + t.Text + ";")
+}
+
+func (t *Color) GetBackground() template.CSS {
+	bg := t.Background
+	css := "background: " + bg.Type + "-gradient("
+	if bg.Type == "linear" {
+		css += strconv.Itoa(int(bg.Angle)) + "deg,"
+	}
+	for _, c := range bg.Colors {
+		css += c.Color + " " + strconv.Itoa(int(c.Position)) + "%,"
+	}
+	return template.CSS(css[:len(css)-1] + ");")
 }
 
 func (b *ButtonColor) GetTextColor() template.CSS {
@@ -149,6 +160,18 @@ func (t *Color) GetTagColor() template.CSS {
 	return template.CSS("--tag-hover: " + t.TagHover + ";")
 }
 
+func (p *CustomPage) GetTextColor() template.CSS {
+	return p.Color.GetTextColor()
+}
+
+func (p *CustomPage) GetBackgroundImage() template.CSS {
+	return template.CSS("--background-image: url(" + golatt.GetStaticPath(p.Image) + ");")
+}
+
+func (p *CustomPage) GetBackground() template.CSS {
+	return p.Color.GetBackground()
+}
+
 func (c *CustomContent) Get() template.HTML {
 	if c.Type == TitleContentType {
 		return template.HTML("<h2>" + c.Content + "</h2>")
@@ -159,12 +182,18 @@ func (c *CustomContent) Get() template.HTML {
 	} else if c.Type == ListContentType {
 		v := ""
 		for _, s := range strings.Split(c.Content, "--") {
+			if len(strings.Trim(s, " ")) == 0 {
+				continue
+			}
 			v += "<li>" + strings.Trim(s, " ") + "</li>"
 		}
 		return template.HTML("<ul>" + v + "</ul>")
 	} else if c.Type == OrderedListContentType {
 		v := ""
 		for _, s := range strings.Split(c.Content, "--") {
+			if len(strings.Trim(s, " ")) == 0 {
+				continue
+			}
 			v += "<li>" + strings.Trim(s, " ") + "</li>"
 		}
 		return template.HTML("<ol>" + v + "</ol>")
