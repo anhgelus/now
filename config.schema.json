@@ -176,6 +176,9 @@
         "image",
         "tags"
       ]
+    },
+    "custom_pages": {
+      "type": "array"
     }
   },
   "additionalProperties": false,

@@ -23,10 +23,7 @@ function changePage(href: string) {
             const doc = new DOMParser().parseFromString(html, "text/html")
             window.history.pushState({}, "", href)
             document.title = doc.title
-            const distMain = doc.querySelector("main")
-            const currentMain = document.querySelector("main")
-            if (distMain === null || currentMain === null) document.body = doc.body
-            else currentMain.innerHTML = distMain.innerHTML
+            document.body = doc.body
             setupEvents()
             scrollTo({
                 top: 0,
