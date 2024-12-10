@@ -50,6 +50,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	customPages, err := cfg.LoadCustomPages()
+	if err != nil {
+		panic(err)
+	}
 	g := golatt.New(templates)
 	g.DefaultSeoData = &golatt.SeoData{
 		Image:       cfg.Image,
@@ -73,6 +77,16 @@ func main() {
 		"Tags of "+cfg.Person.Name+"'s Now page",
 		&cfg).
 		Handle()
+
+	for _, cp := range customPages {
+		g.NewTemplate("custom_page",
+			cp.URI,
+			cp.Title,
+			cp.Image,
+			cp.Description,
+			cp).
+			Handle()
+	}
 
 	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
