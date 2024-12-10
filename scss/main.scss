@@ -119,9 +119,16 @@ h4 {
   font-size: 1.35rem;
 }
 
+ul, ol {
+  margin-bottom: 1rem;
+}
+
 ul {
   list-style: disc inside;
-  margin-bottom: 1rem;
+}
+
+ol {
+  list-style: decimal inside;
 }
 
 li {
