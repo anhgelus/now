@@ -119,6 +119,15 @@ h4 {
   font-size: 1.35rem;
 }
 
+ul {
+  list-style: disc inside;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -243,9 +252,6 @@ h4 {
   }
   & h3 {
     margin-bottom: 0.5rem;
-  }
-  & ul {
-    list-style: disc inside;
   }
   & .links {
     margin-top: 1rem;
