@@ -144,6 +144,19 @@ li {
     align-items: normal;
     gap: 0.5rem;
   }
+  & nav {
+    display: flex;
+    gap: 1rem;
+    @media only screen and (max-width: vars.$bp-little) {
+      margin-bottom: 1rem;
+    }
+  }
+  & .header__title {
+    margin-bottom: 1rem;
+    @media only screen and (max-width: vars.$bp-little) {
+      margin-bottom: 0.25rem;
+    }
+  }
 }
 
 .presentation {
@@ -254,10 +267,7 @@ li {
 }
 
 .custom-page {
-  & h2 {
-    margin-bottom: 1rem;
-  }
-  & h3 {
+  & h2, h3 {
     margin-bottom: 0.5rem;
   }
   & .links {
