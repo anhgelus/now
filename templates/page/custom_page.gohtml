@@ -1,9 +1,10 @@
 {{define "body"}}
     <main class="custom-page" style="{{ .GetBackground }}">
         <div class="header">
-            <h2>{{ .Title }}</h2>
+            <h2 class="header__title">{{ .Title }}</h2>
             <nav>
                 <a href="/">Home</a>
+                <a href="/tags">Tags</a>
             </nav>
         </div>
         {{ .GetContent }}
