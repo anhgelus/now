@@ -60,16 +60,20 @@ func main() {
 	}
 	var g *golatt.Golatt
 	if dev {
-		g = golatt.New(templates, os.DirFS("public"), os.DirFS("dist"))
+		g = golatt.New(golatt.UsableEmbedFS("templates", templates), os.DirFS("public"), os.DirFS("dist"))
 	} else {
-		g = golatt.New(templates, os.DirFS("public"), golatt.UsableEmbedFS("dist", assets))
+		g = golatt.New(
+			golatt.UsableEmbedFS("templates", templates),
+			os.DirFS("public"),
+			golatt.UsableEmbedFS("dist", assets),
+		)
 	}
 	g.DefaultSeoData = &golatt.SeoData{
 		Image:       cfg.Image,
 		Description: cfg.Description,
 		Domain:      domain,
 	}
-	g.Templates = append(g.Templates, "templates/base/*.gohtml")
+	g.Templates = append(g.Templates, "base/*.gohtml")
 
 	g.NewTemplate("index", "/", cfg.Person.Name, "", "", &cfg).Handle()
 	g.NewTemplate("legal",
