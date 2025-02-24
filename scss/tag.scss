@@ -24,6 +24,7 @@
 .tag {
   cursor: pointer;
   padding: 0.5rem;
+  margin: -0.5rem;
   border-radius: 8px;
   @media only screen and (max-width: vars.$bp-little) {
     cursor: auto;
