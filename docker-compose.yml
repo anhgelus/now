@@ -5,7 +5,7 @@ services:
       NOW_DOMAIN: "example.org"
       NOW_CONFIG: "config.json"
     volumes:
-      - ./data.json:/app/data.json:ro
-      - ./assets:/app/public:ro
+      - ./config.json:/app/config.json:ro
+      - ./public:/app/public:ro
     ports:
       - "8000:80"

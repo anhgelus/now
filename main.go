@@ -10,8 +10,12 @@ import (
 	"os"
 )
 
-//go:embed templates
-var templates embed.FS
+var (
+	//go:embed templates
+	templates embed.FS
+	//go:embed dist
+	assets embed.FS
+)
 
 var (
 	domain     string
@@ -37,7 +41,7 @@ func main() {
 	if configPath == "" {
 		configPath = os.Getenv("NOW_DATA")
 		if configPath == "" {
-			slog.Error("Config not set. Set it with --cfg relative path or with the env NOW_DATA")
+			slog.Error("Config not set. Set it with --config relative path or with the env NOW_DATA")
 			return
 		}
 	}
@@ -54,7 +58,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	g := golatt.New(templates)
+	var g *golatt.Golatt
+	if dev {
+		g = golatt.New(templates, os.DirFS("public"), os.DirFS("dist"))
+	} else {
+		g = golatt.New(templates, os.DirFS("public"), golatt.UsableEmbedFS("dist", assets))
+	}
 	g.DefaultSeoData = &golatt.SeoData{
 		Image:       cfg.Image,
 		Description: cfg.Description,
