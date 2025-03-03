@@ -2,7 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/BurntSushi/toml"
 	"github.com/anhgelus/golatt"
 	"html/template"
 	"log/slog"
@@ -125,7 +127,13 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 			return nil, err
 		}
 		var p CustomPage
-		err = json.Unmarshal(b, &p)
+		if strings.HasSuffix(cp, ".json") {
+			err = json.Unmarshal(b, &p)
+		} else if strings.HasSuffix(cp, ".toml") {
+			err = toml.Unmarshal(b, &p)
+		} else {
+			return nil, errors.New("custom page file must be .json or .toml")
+		}
 		if err != nil {
 			return nil, err
 		}
