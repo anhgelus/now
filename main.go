@@ -4,6 +4,7 @@ import (
 	"embed"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"github.com/BurntSushi/toml"
 	"github.com/anhgelus/golatt"
 	"log/slog"
@@ -191,5 +192,5 @@ func generateConfigFile(isToml bool) {
 	if err != nil {
 		panic(err)
 	}
-	println(string(b))
+	fmt.Println(string(b))
 }
