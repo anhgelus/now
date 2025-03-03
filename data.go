@@ -27,60 +27,60 @@ type ConfigData interface {
 }
 
 type Config struct {
-	Image       string   `json:"image"`
-	Description string   `json:"description"`
-	Person      *Person  `json:"person"`
-	Color       *Color   `json:"colors"`
-	Links       []*Link  `json:"links"`
-	Legal       *Legal   `json:"legal"`
-	CustomPages []string `json:"custom_pages"`
+	Image       string   `json:"image" toml:"image"`
+	Description string   `json:"description" toml:"description"`
+	Person      *Person  `json:"person" toml:"person"`
+	Color       *Color   `json:"colors" toml:"colors"`
+	Links       []*Link  `json:"links" toml:"links"`
+	Legal       *Legal   `json:"legal" toml:"legal"`
+	CustomPages []string `json:"custom_pages" toml:"custom_pages"`
 }
 
 type Person struct {
-	Name     string `json:"name"`
-	Pronouns string `json:"pronouns"`
-	Image    string `json:"image"`
-	Tags     []*Tag `json:"tags"`
+	Name     string `json:"name" toml:"name"`
+	Pronouns string `json:"pronouns" toml:"pronouns"`
+	Image    string `json:"image" toml:"image"`
+	Tags     []*Tag `json:"tags" toml:"tags"`
 }
 
 type Tag struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Link        string `json:"link"`
+	Name        string `json:"name" toml:"name"`
+	Description string `json:"description" toml:"description"`
+	Link        string `json:"link" toml:"link"`
 }
 
 type Color struct {
-	Background *BackgroundColor `json:"background"`
-	Button     *ButtonColor     `json:"buttons"`
-	Text       string           `json:"text"`
-	TagHover   string           `json:"tag_hover"`
+	Background *BackgroundColor `json:"background" toml:"background"`
+	Button     *ButtonColor     `json:"buttons" toml:"buttons"`
+	Text       string           `json:"text" toml:"text"`
+	TagHover   string           `json:"tag_hover" toml:"tag_hover"`
 }
 
 type BackgroundColor struct {
-	Type   string `json:"type"`
-	Angle  uint   `json:"angle"`
+	Type   string `json:"type" toml:"type"`
+	Angle  uint   `json:"angle" toml:"angle"`
 	Colors []struct {
-		Color    string `json:"color"`
-		Position uint   `json:"position"`
+		Color    string `json:"color" toml:"color"`
+		Position uint   `json:"position" toml:"position"`
 	} `json:"colors"`
 }
 
 type ButtonColor struct {
-	Text            string `json:"text"`
-	TextHover       string `json:"text_hover"`
-	Background      string `json:"background"`
-	BackgroundHover string `json:"background_hover"`
+	Text            string `json:"text" toml:"text"`
+	TextHover       string `json:"text_hover" toml:"text_hover"`
+	Background      string `json:"background" toml:"background"`
+	BackgroundHover string `json:"background_hover" toml:"background_hover"`
 }
 
 type Link struct {
-	Link    string `json:"link"`
-	Content string `json:"content"`
+	Link    string `json:"link" toml:"link"`
+	Content string `json:"content" toml:"content"`
 }
 
 type Legal struct {
-	LegalInformationLink string   `json:"legal_information_link"`
-	ImagesSource         []string `json:"images_source"`
-	FontSource           string   `json:"font_source"`
+	LegalInformationLink string   `json:"legal_information_link" toml:"legal_information_link"`
+	ImagesSource         []string `json:"images_source" toml:"images_source"`
+	FontSource           string   `json:"font_source" toml:"font_source"`
 }
 
 func (c *Config) GetBackground() template.CSS {
@@ -96,17 +96,17 @@ func (c *Config) GetTextColor() template.CSS {
 }
 
 type CustomPage struct {
-	Title       string           `json:"title"`
-	URI         string           `json:"uri"`
-	Image       string           `json:"image"`
-	Description string           `json:"description"`
-	Color       *Color           `json:"colors"`
-	Content     []*CustomContent `json:"content"`
+	Title       string           `json:"title" toml:"title"`
+	URI         string           `json:"uri" toml:"uri"`
+	Image       string           `json:"image" toml:"image"`
+	Description string           `json:"description" toml:"description"`
+	Color       *Color           `json:"colors" toml:"colors"`
+	Content     []*CustomContent `json:"content" toml:"content"`
 }
 
 type CustomContent struct {
-	Type    string `json:"type"`
-	Content string `json:"content"`
+	Type    string `json:"type" toml:"type"`
+	Content string `json:"content" toml:"content"`
 }
 
 type Content interface {

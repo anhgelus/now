@@ -4,10 +4,12 @@ import (
 	"embed"
 	"encoding/json"
 	"flag"
+	"github.com/BurntSushi/toml"
 	"github.com/anhgelus/golatt"
 	"log/slog"
 	"net/http"
 	"os"
+	"strings"
 )
 
 var (
@@ -49,8 +51,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	var cfg Config
-	err = json.Unmarshal(b, &cfg)
+	if strings.HasSuffix(configPath, ".json") {
+		err = json.Unmarshal(b, &cfg)
+	} else if strings.HasSuffix(configPath, ".toml") {
+		err = toml.Unmarshal(b, &cfg)
+	} else {
+		panic("config file must be .json or .toml")
+	}
 	if err != nil {
 		panic(err)
 	}
@@ -58,6 +67,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	var g *golatt.Golatt
 	if dev {
 		g = golatt.New(golatt.UsableEmbedFS("templates", templates), os.DirFS("public"), os.DirFS("dist"))
