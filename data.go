@@ -62,7 +62,7 @@ type BackgroundColor struct {
 	Colors []struct {
 		Color    string `json:"color" toml:"color"`
 		Position uint   `json:"position" toml:"position"`
-	} `json:"colors"`
+	} `json:"colors" toml:"colors"`
 }
 
 type ButtonColor struct {

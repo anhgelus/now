@@ -20,19 +20,27 @@ var (
 )
 
 var (
-	domain     string
-	configPath string
-	dev        bool
+	domain       string
+	configPath   string
+	dev          bool
+	generateToml bool
+	generateJson bool
 )
 
 func init() {
 	flag.StringVar(&domain, "domain", "", "domain to use")
 	flag.StringVar(&configPath, "config", "", "config to use")
 	flag.BoolVar(&dev, "dev", false, "dev mode enabled")
+	flag.BoolVar(&generateJson, "generate-json-config", false, "generate a config example")
+	flag.BoolVar(&generateToml, "generate-toml-config", false, "generate a config example")
 }
 
 func main() {
 	flag.Parse()
+	if generateToml || generateJson {
+		generateConfigFile(generateToml)
+		return
+	}
 	if domain == "" {
 		domain = os.Getenv("NOW_DOMAIN")
 		if domain == "" {
@@ -122,4 +130,66 @@ func main() {
 	} else {
 		g.StartServer(":80")
 	}
+}
+
+func generateConfigFile(isToml bool) {
+	cfg := Config{
+		Image:       "wallpaper.webp",
+		Description: "I am a beautiful description!",
+		Person: &Person{
+			Name:     "John Doe",
+			Pronouns: "any",
+			Image:    "pfp.webp",
+			Tags: []*Tag{
+				{"Hello", "World", ""},
+				{"I am", "a tag", ""},
+			},
+		},
+		Color: &Color{
+			Background: &BackgroundColor{
+				Type:  "linear",
+				Angle: 141,
+				Colors: []struct {
+					Color    string `json:"color" toml:"color"`
+					Position uint   `json:"position" toml:"position"`
+				}{
+					{"#a4a2b8", 0},
+					{"#3b3860", 40},
+					{"#0f0c2c", 80},
+				},
+			},
+			Button: &ButtonColor{
+				Text:            "#4c0850",
+				TextHover:       "#57145b",
+				Background:      "#f399d0",
+				BackgroundHover: "#f5c0e0",
+			},
+			Text:     "#fff",
+			TagHover: "#000",
+		},
+		Links: []*Link{
+			{"/foo", "Blog"},
+			{"https://www.youtube.com/@anhgelus", "YouTube"},
+		},
+		Legal: &Legal{
+			LegalInformationLink: "/bar",
+			ImagesSource: []string{
+				"Profile picture: some one on website",
+				"Background picture: another one on another website",
+			},
+			FontSource: "Name by some one on website",
+		},
+		CustomPages: []string{"custom.json"},
+	}
+	var b []byte
+	var err error
+	if isToml {
+		b, err = toml.Marshal(&cfg)
+	} else {
+		b, err = json.Marshal(&cfg)
+	}
+	if err != nil {
+		panic(err)
+	}
+	println(string(b))
 }
