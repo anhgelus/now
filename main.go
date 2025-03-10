@@ -172,14 +172,7 @@ func generateConfigFile(isToml bool) {
 			{"/foo", "Blog"},
 			{"https://www.youtube.com/@anhgelus", "YouTube"},
 		},
-		Legal: &Legal{
-			LegalInformationLink: "/bar",
-			ImagesSource: []string{
-				"Profile picture: some one on website",
-				"Background picture: another one on another website",
-			},
-			FontSource: "Name by some one on website",
-		},
+		Legal:       "legal.html",
 		CustomPages: []string{"custom.json"},
 	}
 	var b []byte

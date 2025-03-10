@@ -2,18 +2,10 @@
     <div class="credits-legal" style="{{ .GetBackground }}">
         <h2>Legal information</h2>
         <p>
-            Other legal information are available <a href="{{ .Legal.LegalInformationLink }}" target="_blank">here</a>.
-        </p>
-        <p>
             The software behind this website was made by <a href="https://www.anhgelus.world/" target="_blank">Anhgelus Morhtuuzh</a>.
             It is available on <a href="https://github.com/anhgelus/now">GitHub</a> for free and licensed under the
             <a href="https://github.com/anhgelus/now/blob/main/LICENSE" target="_blank">AGPL</a> license.
         </p>
-        <h3>Image credits</h3>
-        {{ range $s := .Legal.ImagesSource }}
-            <p>{{ . }}</p>
-        {{ end }}
-        <h3>Font credits</h3>
-        <p>{{ .Legal.FontSource }}</p>
+        {{ .GetLegal }}
     </div>
 {{end}}

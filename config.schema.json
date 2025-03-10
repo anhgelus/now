@@ -92,27 +92,8 @@
       "type": "string"
     },
     "legal": {
-      "type": "object",
-      "properties": {
-        "font_source": {
-          "type": "string"
-        },
-        "images_source": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "legal_information_link": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "legal_information_link",
-        "images_source",
-        "font_source"
-      ]
+      "type": "string",
+      "additionalProperties": false
     },
     "links": {
       "type": "array",

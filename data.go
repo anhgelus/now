@@ -34,7 +34,7 @@ type Config struct {
 	Person      *Person  `json:"person" toml:"person"`
 	Color       *Color   `json:"colors" toml:"colors"`
 	Links       []*Link  `json:"links" toml:"links"`
-	Legal       *Legal   `json:"legal" toml:"legal"`
+	Legal       string   `json:"legal" toml:"legal"`
 	CustomPages []string `json:"custom_pages" toml:"custom_pages"`
 }
 
@@ -77,12 +77,6 @@ type ButtonColor struct {
 type Link struct {
 	Link    string `json:"link" toml:"link"`
 	Content string `json:"content" toml:"content"`
-}
-
-type Legal struct {
-	LegalInformationLink string   `json:"legal_information_link" toml:"legal_information_link"`
-	ImagesSource         []string `json:"images_source" toml:"images_source"`
-	FontSource           string   `json:"font_source" toml:"font_source"`
 }
 
 func (c *Config) GetBackground() template.CSS {
@@ -140,6 +134,19 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 		pages = append(pages, &p)
 	}
 	return pages, nil
+}
+
+var legalContent template.HTML
+
+func (c *Config) GetLegal() (template.HTML, error) {
+	if legalContent == "" {
+		b, err := os.ReadFile(c.Legal)
+		if err != nil {
+			return "", err
+		}
+		legalContent = template.HTML(b)
+	}
+	return legalContent, nil
 }
 
 func (t *Color) GetTextColor() template.CSS {
