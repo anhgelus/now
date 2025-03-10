@@ -3,11 +3,9 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/BurntSushi/toml"
 	"github.com/anhgelus/golatt"
 	"html/template"
-	"log/slog"
 	"os"
 	"strconv"
 	"strings"
@@ -26,6 +24,7 @@ type ConfigData interface {
 	GetTextColor() template.CSS
 	GetBackground() template.CSS
 	GetBackgroundImage() template.CSS
+	IsCustomPage() bool
 }
 
 type Config struct {
@@ -91,22 +90,30 @@ func (c *Config) GetTextColor() template.CSS {
 	return c.Color.GetTextColor()
 }
 
+func (c *Config) IsCustomPage() bool {
+	return false
+}
+
+var legalContent template.HTML
+
+func (c *Config) GetLegal() (template.HTML, error) {
+	if legalContent == "" {
+		b, err := os.ReadFile(c.Legal)
+		if err != nil {
+			return "", err
+		}
+		legalContent = template.HTML(b)
+	}
+	return legalContent, nil
+}
+
 type CustomPage struct {
-	Title       string           `json:"title" toml:"title"`
-	URI         string           `json:"uri" toml:"uri"`
-	Image       string           `json:"image" toml:"image"`
-	Description string           `json:"description" toml:"description"`
-	Color       *Color           `json:"colors" toml:"colors"`
-	Content     []*CustomContent `json:"content" toml:"content"`
-}
-
-type CustomContent struct {
-	Type    string `json:"type" toml:"type"`
-	Content string `json:"content" toml:"content"`
-}
-
-type Content interface {
-	Get() template.HTML
+	Title       string `json:"title" toml:"title"`
+	URI         string `json:"uri" toml:"uri"`
+	Image       string `json:"image" toml:"image"`
+	Description string `json:"description" toml:"description"`
+	Color       *Color `json:"colors" toml:"colors"`
+	Content     string `json:"content" toml:"content"`
 }
 
 func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
@@ -134,19 +141,6 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 		pages = append(pages, &p)
 	}
 	return pages, nil
-}
-
-var legalContent template.HTML
-
-func (c *Config) GetLegal() (template.HTML, error) {
-	if legalContent == "" {
-		b, err := os.ReadFile(c.Legal)
-		if err != nil {
-			return "", err
-		}
-		legalContent = template.HTML(b)
-	}
-	return legalContent, nil
 }
 
 func (t *Color) GetTextColor() template.CSS {
@@ -189,64 +183,21 @@ func (p *CustomPage) GetBackground() template.CSS {
 	return p.Color.GetBackground()
 }
 
-func (p *CustomPage) GetContent() template.HTML {
-	var res template.HTML
-	for _, c := range p.Content {
-		res += c.Get(p)
-	}
-	return res
+func (p *CustomPage) IsCustomPage() bool {
+	return true
 }
 
-func (c *CustomContent) Get(p *CustomPage) template.HTML {
-	if c.Type == TitleContentType {
-		return template.HTML("<h2>" + c.Content + "</h2>")
-	} else if c.Type == SubtitleContentType {
-		return template.HTML("<h3>" + c.Content + "</h3>")
-	} else if c.Type == ParagraphContentType {
-		return template.HTML("<p>" + c.Content + "</p>")
-	} else if c.Type == ListContentType {
-		v := ""
-		for _, s := range strings.Split(c.Content, "--") {
-			if len(strings.Trim(s, " ")) == 0 {
-				continue
-			}
-			v += "<li>" + strings.Trim(s, " ") + "</li>"
+var contentsMap = map[string]template.HTML{}
+
+func (p *CustomPage) GetContent() (template.HTML, error) {
+	res, ok := contentsMap[p.URI]
+	if !ok {
+		b, err := os.ReadFile(p.Content)
+		if err != nil {
+			return "", err
 		}
-		return template.HTML("<ul>" + v + "</ul>")
-	} else if c.Type == OrderedListContentType {
-		v := ""
-		for _, s := range strings.Split(c.Content, "--") {
-			if len(strings.TrimSpace(s)) == 0 {
-				continue
-			}
-			v += "<li>" + strings.TrimSpace(s) + "</li>"
-		}
-		return template.HTML("<ol>" + v + "</ol>")
-	} else if c.Type == ButtonsContentType {
-		// [Bonsoir](/hello) -- [Bonjour](/not_hello)
-		v := ""
-		for _, s := range strings.Split(c.Content, "--") {
-			if len(strings.TrimSpace(s)) == 0 {
-				continue
-			}
-			sp := strings.Split(s, "](")
-			if len(sp) != 2 {
-				slog.Warn("Invalid button", "s", s)
-				continue
-			}
-			url := strings.TrimSpace(sp[1])
-			v += fmt.Sprintf(
-				`<div class="link"><a href="%s">%s</a></div>`,
-				url[:len(url)-1],
-				strings.TrimSpace(sp[0])[1:],
-			)
-		}
-		return template.HTML(fmt.Sprintf(
-			`<nav class="links" style="%s">%s</nav>`,
-			p.Color.Button.GetBackground()+p.Color.Button.GetTextColor(),
-			v,
-		))
+		res = template.HTML(b)
+		contentsMap[p.URI] = res
 	}
-	slog.Warn("Unknown type", "type", c.Type, "value", c.Content)
-	return ""
+	return res, nil
 }
