@@ -16,7 +16,7 @@ Everything located inside will be available at the path `/static/PATH` where `PA
 
 You can change the font by adding a file named `font.woff2` inside the `public` directory.
 This font must be compressed by [Woff2](https://en.wikipedia.org/wiki/Web_Open_Font_Format).
-(You can compress them with the command `woff2_compress` avaible in the package `woff2` of many Linux distributions.)
+(You can compress them with the command `woff2_compress` available in the package `woff2` of many Linux distributions.)
 
 ### Main config
 You can create a sample config with the flag `-generate-json-config` (which generates a JSON config) or with 
@@ -61,7 +61,7 @@ Then, you define the colors of the main page.
 `text` is the text's color.
 `tag_hover` is the background's color of a tag when someone hover it.
 `colors.background` defines the card's background (check the CSS property `gradiant` on 
-[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient)) to have more information.
+[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient) to have more information).
 `colors.buttons` defines buttons' colors.
 ```toml
 [colors]
@@ -90,7 +90,7 @@ Then, you define the colors of the main page.
 ```
 
 Finally, you define the link at the bottom of your card.
-You have as much as you want. 
+You can have as much of these as you want. 
 ```toml
 [[links]]
   link = "/foo"
@@ -138,7 +138,7 @@ If you want to use buttons, you must follow this structure:
 </nav>
 ```
 Their style is defined by the config.
-You change their style by defining these CSS variables `--text-color`, `--text-color-hover`, `--background` and 
+You can change their style by defining these CSS variables `--text-color`, `--text-color-hover`, `--background` and 
 `--background-hover`.
 
 ## Technologies used
