@@ -21,18 +21,21 @@ This font must be compressed by [Woff2](https://en.wikipedia.org/wiki/Web_Open_F
 ### Main config
 You can create a sample config with the flag `-generate-json-config` (which generates a JSON config) or with 
 `-generate-toml-config` (which generates a TOML config).
-A JSON schema is available for json configs.
+A JSON schema is available for JSON configs.
 
 The config does not depend on the markup language: a field `foo` will being named `foo` for JSON and TOML.
 The TOML format is used in this section.
 
-The root is defining the background image, the description, the file's path to the legal pages and the path to
-the configs of custom pages.
+The root is defining the background image, the description, the file's path to the legal pages, the path to
+the configs of custom pages and a list of all your ["rel-me"](https://microformats.org/wiki/rel-me) links. 
+(The "rel-me" links are required to 
+[verify a link on your Mastodon account](https://docs.joinmastodon.org/user/profile/#verification), for example.)
 ```toml
 image = "wallpaper.webp"
 description = "I am a beautiful description!"
 legal = "legal.html"
 custom_pages = ["custom.toml"]
+rel_me_links = ["https://foo.example.org/@bar"]
 ```
 The path is relative to the execution of the binary.
 If you are using Docker, please use a static path.

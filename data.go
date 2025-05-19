@@ -11,15 +11,6 @@ import (
 	"strings"
 )
 
-const (
-	TitleContentType       = "title"
-	SubtitleContentType    = "subtitle"
-	ParagraphContentType   = "paragraph"
-	ListContentType        = "list"
-	OrderedListContentType = "ordered_list"
-	ButtonsContentType     = "links"
-)
-
 type ConfigData interface {
 	GetTextColor() template.CSS
 	GetBackground() template.CSS
@@ -34,6 +25,7 @@ type Config struct {
 	Color       *Color   `json:"colors" toml:"colors"`
 	Links       []*Link  `json:"links" toml:"links"`
 	Legal       string   `json:"legal" toml:"legal"`
+	RelMeLinks  []string `json:"rel_me_links" toml:"rel_me_links"`
 	CustomPages []string `json:"custom_pages" toml:"custom_pages"`
 }
 

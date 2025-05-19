@@ -160,6 +160,9 @@
     },
     "custom_pages": {
       "type": "array"
+    },
+    "rel_me_links": {
+      "type": "array"
     }
   },
   "additionalProperties": false,

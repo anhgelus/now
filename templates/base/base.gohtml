@@ -13,6 +13,9 @@
                 .links { {{ .Data.Color.Button.GetBackground }}{{ .Data.Color.Button.GetTextColor }} }
             </style>
         {{ end }}
+        {{ range .Data.RelMeLinks }}
+            <link rel="me" href="{{ . }}" />
+        {{ end }}
     </head>
     <body style="{{ .Data.GetBackgroundImage }}{{ .Data.GetTextColor }}">
     <div class="center">

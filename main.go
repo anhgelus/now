@@ -174,6 +174,7 @@ func generateConfigFile(isToml bool) {
 		},
 		Legal:       "legal.html",
 		CustomPages: []string{"custom.json"},
+		RelMeLinks:  []string{"https://foo.example.org/@bar"},
 	}
 	var b []byte
 	var err error
