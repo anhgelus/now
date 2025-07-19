@@ -23,17 +23,19 @@ var (
 var (
 	domain       string
 	configPath   string
-	dev          bool
+	dev          bool = false
 	generateToml bool
 	generateJson bool
+	port         int = 80
 )
 
 func init() {
 	flag.StringVar(&domain, "domain", "", "domain to use")
 	flag.StringVar(&configPath, "config", "", "config to use")
-	flag.BoolVar(&dev, "dev", false, "dev mode enabled")
+	flag.BoolVar(&dev, "dev", dev, "dev mode enabled")
 	flag.BoolVar(&generateJson, "generate-json-config", false, "generate a config example")
 	flag.BoolVar(&generateToml, "generate-toml-config", false, "generate a config example")
+	flag.IntVar(&port, "port", port, "set the port to use")
 }
 
 func main() {
@@ -125,11 +127,15 @@ func main() {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 
+	host := fmt.Sprintf(":%d", port)
 	if dev {
-		slog.Info("Starting on http://localhost:8000/")
-		g.StartServer(":8000")
+		if port != 80 {
+			g.StartServer(host)
+		} else {
+			g.StartServer(":8000")
+		}
 	} else {
-		g.StartServer(":80")
+		g.StartServer(host)
 	}
 }
 
