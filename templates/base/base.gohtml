@@ -12,9 +12,10 @@
             <style>
                 .links { {{ .Data.Color.Button.GetBackground }}{{ .Data.Color.Button.GetTextColor }} }
             </style>
-        {{ end }}
+	{{ else }}
         {{ range .Data.RelMeLinks }}
             <link rel="me" href="{{ . }}" />
+        {{ end }}
         {{ end }}
     </head>
     <body style="{{ .Data.GetBackgroundImage }}{{ .Data.GetTextColor }}">
