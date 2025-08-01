@@ -2,7 +2,7 @@
     <main style="{{ .GetBackground }}">
         <div class="presentation">
             <figure>
-                <img src="{{ getStaticPath .Person.Image }}" alt="{{ .Person.Name }}'s image">
+                <img src="{{ getImage .Person.Image }}" alt="{{ .Person.Name }}'s image">
             </figure>
             <div class="presentation__information">
                 <h2>{{ .Person.Name }}</h2>

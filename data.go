@@ -7,8 +7,13 @@ import (
 	"github.com/anhgelus/golatt"
 	"html/template"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
+)
+
+var (
+	regexExternalLink = regexp.MustCompile(`https?://`)
 )
 
 type ConfigData interface {
@@ -70,12 +75,19 @@ type Link struct {
 	Content string `json:"content" toml:"content"`
 }
 
+func getImage(s string) string {
+	if regexExternalLink.MatchString(s) {
+		return s
+	}
+	return golatt.GetStaticPath(s)
+}
+
 func (c *Config) GetBackground() template.CSS {
 	return c.Color.GetBackground()
 }
 
 func (c *Config) GetBackgroundImage() template.CSS {
-	return template.CSS("--background-image: url(" + golatt.GetStaticPath(c.Image) + ");")
+	return template.CSS("--background-image: url(" + getImage(c.Image) + ");")
 }
 
 func (c *Config) GetTextColor() template.CSS {
@@ -168,7 +180,7 @@ func (p *CustomPage) GetTextColor() template.CSS {
 }
 
 func (p *CustomPage) GetBackgroundImage() template.CSS {
-	return template.CSS("--background-image: url(" + golatt.GetStaticPath(p.Image) + ");")
+	return template.CSS("--background-image: url(" + getImage(p.Image) + ");")
 }
 
 func (p *CustomPage) GetBackground() template.CSS {

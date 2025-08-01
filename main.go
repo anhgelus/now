@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/BurntSushi/toml"
 	"github.com/anhgelus/golatt"
+	"html/template"
 	"log/slog"
 	"net/http"
 	"os"
@@ -125,6 +126,10 @@ func main() {
 
 	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+	}
+
+	g.TemplateFuncMap = template.FuncMap{
+		"getImage": getImage,
 	}
 
 	host := fmt.Sprintf(":%d", port)
