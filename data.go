@@ -32,6 +32,7 @@ type Config struct {
 	Legal       string   `json:"legal" toml:"legal"`
 	RelMeLinks  []string `json:"rel_me_links" toml:"rel_me_links"`
 	CustomPages []string `json:"custom_pages" toml:"custom_pages"`
+	folder      string
 }
 
 type Person struct {
@@ -82,23 +83,6 @@ func getImage(s string) string {
 	return golatt.GetStaticPath(s)
 }
 
-func getPath(filename string) string {
-	if !strings.Contains(configPath, "/") {
-		return filename
-	}
-	sp := strings.Split(configPath, "/")
-	before := strings.Join(sp[1:len(sp)-1], "/")
-	if configPath[0] != '/' && !strings.HasPrefix(configPath, "./") {
-		if len(before) == 0 {
-			before = sp[0]
-		} else {
-			before = sp[0] + "/" + before
-		}
-	}
-	before += "/"
-	return before + filename
-}
-
 func (c *Config) GetBackground() template.CSS {
 	return c.Color.GetBackground()
 }
@@ -119,7 +103,7 @@ var legalContent template.HTML
 
 func (c *Config) GetLegal() (template.HTML, error) {
 	if legalContent == "" {
-		b, err := os.ReadFile(getPath(c.Legal))
+		b, err := os.ReadFile(c.folder + c.Legal)
 		if err != nil {
 			return "", err
 		}
@@ -135,6 +119,7 @@ type CustomPage struct {
 	Description string `json:"description" toml:"description"`
 	Color       *Color `json:"colors" toml:"colors"`
 	Content     string `json:"content" toml:"content"`
+	folder      string
 }
 
 func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
@@ -144,7 +129,7 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 	}
 	var pages []*CustomPage
 	for _, cp := range c.CustomPages {
-		b, err := os.ReadFile(getPath(cp))
+		b, err := os.ReadFile(c.folder + cp)
 		if err != nil {
 			return nil, err
 		}
@@ -159,6 +144,9 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 		if err != nil {
 			return nil, err
 		}
+
+		p.folder = getFolder(c.folder + cp)
+
 		pages = append(pages, &p)
 	}
 	return pages, nil
@@ -213,7 +201,7 @@ var contentsMap = map[string]template.HTML{}
 func (p *CustomPage) GetContent() (template.HTML, error) {
 	res, ok := contentsMap[p.URI]
 	if !ok {
-		b, err := os.ReadFile(getPath(p.Content))
+		b, err := os.ReadFile(p.folder + p.Content)
 		if err != nil {
 			return "", err
 		}

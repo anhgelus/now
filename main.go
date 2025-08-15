@@ -75,6 +75,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	cfg.folder = getFolder(configPath)
+
 	customPages, err := cfg.LoadCustomPages()
 	if err != nil {
 		panic(err)
@@ -84,13 +87,13 @@ func main() {
 	if dev {
 		g = golatt.New(
 			golatt.UsableEmbedFS("templates", templates),
-			os.DirFS(getPath("public")),
+			os.DirFS(cfg.folder+"public"),
 			os.DirFS("dist"),
 		)
 	} else {
 		g = golatt.New(
 			golatt.UsableEmbedFS("templates", templates),
-			os.DirFS(getPath("public")),
+			os.DirFS(cfg.folder+"public"),
 			golatt.UsableEmbedFS("dist", assets),
 		)
 	}
@@ -146,6 +149,22 @@ func main() {
 	} else {
 		g.StartServer(host)
 	}
+}
+
+func getFolder(path string) string {
+	if !strings.Contains(path, "/") {
+		return ""
+	}
+	sp := strings.Split(path, "/")
+	folder := strings.Join(sp[1:len(sp)-1], "/")
+	if path[0] != '/' && !strings.HasPrefix(path, "./") {
+		if len(folder) == 0 {
+			folder = sp[0]
+		} else {
+			folder = sp[0] + "/" + folder
+		}
+	}
+	return folder + "/"
 }
 
 func generateConfigFile(isToml bool) {
