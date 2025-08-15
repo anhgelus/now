@@ -4,6 +4,7 @@
 
 :root {
   --text-color: #000;
+  font-size: 18px;
 }
 
 @font-face {
@@ -13,7 +14,6 @@
 
 body {
   --background-image: ;
-  font-size: 18px;
   font-family: "custom", Raveo, Inter, Roboto, sans-serif;
   background: #000;
   background-size: cover;
@@ -101,23 +101,23 @@ p {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 1.75rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   @media only screen and (max-width: vars.$bp-little) {
-    font-size: 1.75rem;
+    font-size: 1.425rem;
   }
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 h4 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
 }
 
 ul, ol {

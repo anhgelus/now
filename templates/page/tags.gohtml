@@ -1,7 +1,7 @@
 {{define "body"}}
     <main style="{{ .GetBackground }}">
         <div class="header">
-            <h2 class="header__title">Tags</h2>
+            <h1 class="header__title">Tags</h1>
             <nav>
                 <a href="/">Home</a>
             </nav>
@@ -9,7 +9,7 @@
         <div class="tags" style="{{ .Color.GetTagColor }}">
             {{ range $tag := .Person.Tags }}
                 <div class="tag" data-href="{{ .Link }}" title="{{ .Link }}">
-                    <h4>{{ .Name }}</h4>
+                    <h3>{{ .Name }}</h3>
                     <p>{{ .Description }}</p>
                 </div>
             {{ end }}
