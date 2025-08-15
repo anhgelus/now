@@ -14,12 +14,12 @@
 body {
   --background-image: ;
   font-size: 18px;
-  font-family: "custom", "serif";
-  background: var(--background-image) center fixed no-repeat;
+  font-family: "custom", Raveo, Inter, Roboto, sans-serif;
+  background: #000;
   background-size: cover;
   color: var(--text-color);
-  @media only screen and (max-width: vars.$bp-little) {
-    background: #000;
+  @media only screen and (min-width: vars.$bp-little) {
+    background: var(--background-image) center fixed no-repeat black;
   }
 }
 
