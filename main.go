@@ -22,17 +22,19 @@ var (
 )
 
 var (
-	domain       string
-	configPath   string
-	dev          = false
-	generateToml bool
-	generateJson bool
-	port         = 80
+	domain        string
+	configPath    string
+	publicDirPath string
+	dev           = false
+	generateToml  bool
+	generateJson  bool
+	port          = 80
 )
 
 func init() {
 	flag.StringVar(&domain, "domain", "", "domain to use")
 	flag.StringVar(&configPath, "config", "", "config to use")
+	flag.StringVar(&publicDirPath, "public-dir", "", "public directory to use, default is 'public' inside the folder of your config")
 	flag.BoolVar(&dev, "dev", dev, "dev mode enabled")
 	flag.BoolVar(&generateJson, "generate-json-config", false, "generate a config example")
 	flag.BoolVar(&generateToml, "generate-toml-config", false, "generate a config example")
@@ -83,17 +85,22 @@ func main() {
 		panic(err)
 	}
 
+	publicFolder := cfg.folder + "public"
+	if len(publicDirPath) != 0 {
+		publicFolder = publicDirPath
+	}
+
 	var g *golatt.Golatt
 	if dev {
 		g = golatt.New(
 			golatt.UsableEmbedFS("templates", templates),
-			os.DirFS(cfg.folder+"public"),
+			os.DirFS(publicFolder),
 			os.DirFS("dist"),
 		)
 	} else {
 		g = golatt.New(
 			golatt.UsableEmbedFS("templates", templates),
-			os.DirFS(cfg.folder+"public"),
+			os.DirFS(publicFolder),
 			golatt.UsableEmbedFS("dist", assets),
 		)
 	}
