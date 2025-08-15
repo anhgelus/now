@@ -24,10 +24,10 @@ var (
 var (
 	domain       string
 	configPath   string
-	dev          bool = false
+	dev          = false
 	generateToml bool
 	generateJson bool
-	port         int = 80
+	port         = 80
 )
 
 func init() {
@@ -82,11 +82,15 @@ func main() {
 
 	var g *golatt.Golatt
 	if dev {
-		g = golatt.New(golatt.UsableEmbedFS("templates", templates), os.DirFS("public"), os.DirFS("dist"))
+		g = golatt.New(
+			golatt.UsableEmbedFS("templates", templates),
+			os.DirFS(getPath("public")),
+			os.DirFS("dist"),
+		)
 	} else {
 		g = golatt.New(
 			golatt.UsableEmbedFS("templates", templates),
-			os.DirFS("public"),
+			os.DirFS(getPath("public")),
 			golatt.UsableEmbedFS("dist", assets),
 		)
 	}

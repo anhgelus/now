@@ -175,7 +175,4 @@ dist
 
 # Test files
 public/
-config.json
-legal.html
-test.html
-test.json
+test

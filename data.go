@@ -82,6 +82,23 @@ func getImage(s string) string {
 	return golatt.GetStaticPath(s)
 }
 
+func getPath(filename string) string {
+	if !strings.Contains(configPath, "/") {
+		return filename
+	}
+	sp := strings.Split(configPath, "/")
+	before := strings.Join(sp[1:len(sp)-1], "/")
+	if configPath[0] != '/' && !strings.HasPrefix(configPath, "./") {
+		if len(before) == 0 {
+			before = sp[0]
+		} else {
+			before = sp[0] + "/" + before
+		}
+	}
+	before += "/"
+	return before + filename
+}
+
 func (c *Config) GetBackground() template.CSS {
 	return c.Color.GetBackground()
 }
@@ -102,7 +119,7 @@ var legalContent template.HTML
 
 func (c *Config) GetLegal() (template.HTML, error) {
 	if legalContent == "" {
-		b, err := os.ReadFile(c.Legal)
+		b, err := os.ReadFile(getPath(c.Legal))
 		if err != nil {
 			return "", err
 		}
@@ -127,7 +144,7 @@ func (c *Config) LoadCustomPages() ([]*CustomPage, error) {
 	}
 	var pages []*CustomPage
 	for _, cp := range c.CustomPages {
-		b, err := os.ReadFile(cp)
+		b, err := os.ReadFile(getPath(cp))
 		if err != nil {
 			return nil, err
 		}
@@ -196,7 +213,7 @@ var contentsMap = map[string]template.HTML{}
 func (p *CustomPage) GetContent() (template.HTML, error) {
 	res, ok := contentsMap[p.URI]
 	if !ok {
-		b, err := os.ReadFile(p.Content)
+		b, err := os.ReadFile(getPath(p.Content))
 		if err != nil {
 			return "", err
 		}
