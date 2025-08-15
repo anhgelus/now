@@ -176,3 +176,6 @@ dist
 # Test files
 public/
 test
+
+# builds
+now
