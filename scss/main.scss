@@ -261,6 +261,31 @@ li {
   }
 }
 
+.rings {
+  position: fixed;
+  right: 4rem;
+  bottom: 4rem;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 3rem;
+  @media only screen and (max-width: vars.$bp-little) {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+  }
+}
+
+.ring {
+  display: block;
+  height: 100%;
+  & img {
+    height: 100%;
+  }
+}
+
 .credits-legal {
   max-width: 800px;
   padding: 0 2rem 1rem 2rem;

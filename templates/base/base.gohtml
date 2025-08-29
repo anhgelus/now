@@ -12,7 +12,7 @@
             <style>
                 .links { {{ .Data.Color.Button.GetBackground }}{{ .Data.Color.Button.GetTextColor }} }
             </style>
-	{{ else }}
+	    {{ else }}
         {{ range .Data.RelMeLinks }}
             <link rel="me" href="{{ . }}" />
         {{ end }}
@@ -22,6 +22,15 @@
     <div class="center">
         {{template "body" .Data}}
     </div>
+    {{ if ne .Data.Rings nil }}
+    <div class="rings">
+        {{ range $ring := .Data.Rings }}
+            <a href="{{ $ring.Link }}" target="_blank" class="ring">
+                <img src="{{ getImage $ring.Image }}" alt="{{ $ring.Name }} logo">
+            </a>
+        {{ end }}
+    </div>
+    {{ end }}
     <footer class="credits">
         <p>Crafted by <a href="/legal" target="_blank">Anhgelus Morhtuuzh</a></p>
     </footer>

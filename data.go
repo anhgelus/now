@@ -24,15 +24,22 @@ type ConfigData interface {
 }
 
 type Config struct {
-	Image       string   `json:"image" toml:"image"`
-	Description string   `json:"description" toml:"description"`
-	Person      *Person  `json:"person" toml:"person"`
-	Color       *Color   `json:"colors" toml:"colors"`
-	Links       []*Link  `json:"links" toml:"links"`
+	Image       string `json:"image" toml:"image"`
+	Description string `json:"description" toml:"description"`
+	folder      string
 	Legal       string   `json:"legal" toml:"legal"`
 	RelMeLinks  []string `json:"rel_me_links" toml:"rel_me_links"`
 	CustomPages []string `json:"custom_pages" toml:"custom_pages"`
-	folder      string
+	Person      *Person  `json:"person" toml:"person"`
+	Color       *Color   `json:"colors" toml:"colors"`
+	Links       []*Link  `json:"links" toml:"links"`
+	Rings       []*Ring  `json:"rings" toml:"rings"`
+}
+
+type Ring struct {
+	Image string `json:"image" toml:"image"`
+	Name  string `json:"name" toml:"name"`
+	Link  string `json:"link" toml:"link"`
 }
 
 type Person struct {
