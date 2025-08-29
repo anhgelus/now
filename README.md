@@ -104,6 +104,14 @@ You can have as much of these as you want.
   content = "YouTube"
 ```
 
+Optionally, you can add webring(s) to your page.
+```toml
+[[rings]]
+  image = "foo-ring.webp"
+  link = "ring.example.org"
+  name = "Foo ring"
+```
+
 ### Custom page config
 You can create custom pages with a new config.
 It can also be a JSON or a TOML file.
