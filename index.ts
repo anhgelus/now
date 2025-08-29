@@ -25,6 +25,10 @@ function changePage(href: string) {
             window.history.pushState({}, "", href)
             document.title = doc.title
             document.body = doc.body
+            document.head.querySelectorAll("style").forEach(e => document.head.removeChild(e))
+            doc.head.querySelectorAll("style").forEach(e => {
+                document.head.appendChild(e)
+            })
             setupEvents()
             scrollTo({
                 top: 0,
