@@ -146,6 +146,7 @@ func main() {
 	g.TemplateFuncMap = template.FuncMap{
 		"getImage": getImage,
 		"getRings": func() []*Ring { return cfg.Rings },
+		"getFont":  func() string { return cfg.Font },
 	}
 
 	host := fmt.Sprintf(":%d", port)

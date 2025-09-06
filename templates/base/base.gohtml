@@ -7,10 +7,11 @@
         <link rel="shortcut icon" href="{{getStaticPath "logo.png"}}" type="image/png" />
         <title>{{ .Title }}</title>
         <style>
-            {{ if ne .Data.Font "" }}
+            {{ $font := getFont }}
+            {{ if ne $font "" }}
                 @font-face {
                     font-family: "custom";
-                    src: url("{{ getStaticPath .Data.Font }}");
+                    src: url("{{ getStaticPath $font }}");
                 }
                 body {
                     --fonts: "custom";
