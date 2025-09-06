@@ -24,7 +24,7 @@
     </div>
     {{ $rings := getRings }}
     {{ if ne $rings nil }}
-    <div class="rings">
+    <div class="rings {{ if ne .SEO.URL "/" }}fixed{{ end }}">
         {{ range $ring := $rings }}
             <a href="{{ $ring.Link }}" target="_blank" class="ring">
                 <img src="{{ getImage $ring.Image }}" alt="{{ $ring.Name }} logo">

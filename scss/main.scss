@@ -262,7 +262,7 @@ li {
 }
 
 .rings {
-  position: fixed;
+  position: absolute;
   right: 4rem;
   bottom: 4rem;
   display: flex;
@@ -272,9 +272,11 @@ li {
   gap: 1rem;
   height: 3rem;
   @media only screen and (max-width: vars.$bp-little) {
-    position: absolute;
     left: 2rem;
     right: 2rem;
+  }
+  &.fixed {
+    position: fixed;
   }
 }
 
