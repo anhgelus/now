@@ -3,11 +3,9 @@ Self-hostable bio page website, like carrd, guns.lol and many more!
 
 Lightweight and heavily customizable Go application.
 
-![Screenshot of the main page](./example.jpg)
+![Screenshot of the main page](example.jpg)
 
-![Screenshot of a custom page](./music.webp)
-
-![Screenshot of a custom page](./games.webp)
+![Screenshot of a custom page](music.jpg)
 
 ## Config
 You must have a `public` directory.
