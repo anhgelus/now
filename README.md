@@ -14,30 +14,28 @@ You must have a `public` directory.
 Everything located inside will be available at the path `/static/PATH` where `PATH` is the relative path inside the
 `public` directory.
 
-You can change the font by adding a file named `font.woff2` inside the `public` directory.
-This font must be compressed by [Woff2](https://en.wikipedia.org/wiki/Web_Open_Font_Format).
-(You can compress them with the command `woff2_compress` available in the package `woff2` of many Linux distributions.)
-
 ### Main config
 You can create a sample config with the flag `-generate-json-config` (which generates a JSON config) or with 
 `-generate-toml-config` (which generates a TOML config).
-A JSON schema is available for JSON configs.
 
 The config does not depend on the markup language: a field `foo` will being named `foo` for JSON and TOML.
 The TOML format is used in this section.
 
-The root is defining the background image, the description, the file's path to the legal pages, the path to
-the configs of custom pages and a list of all your ["rel-me"](https://microformats.org/wiki/rel-me) links. 
+The root is defining the background image, the description, the file's path to the legal pages, the path to the custom 
+font (you can remove this if you want to use `Raveo, Inter, Roboto` as default fonts), the path to the configs of custom
+pages and a list of all your ["rel-me"](https://microformats.org/wiki/rel-me) links. 
 (The "rel-me" links are required to 
 [verify a link on your Mastodon account](https://docs.joinmastodon.org/user/profile/#verification), for example.)
 ```toml
 image = "wallpaper.webp"
 description = "I am a beautiful description!"
 legal = "legal.html"
+font = ""
 custom_pages = ["custom.toml"]
 rel_me_links = ["https://foo.example.org/@bar"]
 ```
-The path is relative to the execution of the binary.
+The path is relative to the execution of the binary, except for `image` and `font` which are relative to the `public` 
+folder.
 If you are using Docker, please use a static path.
 
 The first section is defining who you are.

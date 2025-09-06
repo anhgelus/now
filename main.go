@@ -5,13 +5,14 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/BurntSushi/toml"
-	"github.com/anhgelus/golatt"
 	"html/template"
 	"log/slog"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/BurntSushi/toml"
+	"github.com/anhgelus/golatt"
 )
 
 var (
@@ -117,15 +118,15 @@ func main() {
 		"Legal things",
 		"",
 		"Legal information about "+cfg.Person.Name+"'s Now page",
-		&cfg).
-		Handle()
+		&cfg,
+	).Handle()
 	g.NewTemplate("tags",
 		"/tags",
 		"Tags",
 		"",
 		"Tags of "+cfg.Person.Name+"'s Now page",
-		&cfg).
-		Handle()
+		&cfg,
+	).Handle()
 
 	for _, cp := range customPages {
 		slog.Info("Creating custom page...", "title", cp.Title, "uri", cp.URI)
@@ -134,8 +135,8 @@ func main() {
 			cp.Title,
 			cp.Image,
 			cp.Description,
-			cp).
-			Handle()
+			cp,
+		).Handle()
 	}
 
 	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {

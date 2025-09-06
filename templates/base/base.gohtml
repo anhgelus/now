@@ -6,6 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="{{getStaticPath "logo.png"}}" type="image/png" />
         <title>{{ .Title }}</title>
+        <style>
+            {{ if ne .Data.Font "" }}
+                @font-face {
+                    font-family: "custom";
+                    src: url("{{ getStaticPath .Data.Font }}");
+                }
+                body {
+                    --fonts: "custom";
+                }
+            {{ end }}
+        </style>
         <link rel="stylesheet" href="{{getAssetPath "styles.css"}}" />
         {{template "opengraph-base" .SEO}}
         {{ if .Data.IsCustomPage }}

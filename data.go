@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"github.com/BurntSushi/toml"
-	"github.com/anhgelus/golatt"
 	"html/template"
 	"os"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/BurntSushi/toml"
+	"github.com/anhgelus/golatt"
 )
 
 var (
@@ -28,6 +29,7 @@ type Config struct {
 	Description string `json:"description" toml:"description"`
 	folder      string
 	Legal       string   `json:"legal" toml:"legal"`
+	Font        string   `json:"font" toml:"font"`
 	RelMeLinks  []string `json:"rel_me_links" toml:"rel_me_links"`
 	CustomPages []string `json:"custom_pages" toml:"custom_pages"`
 	Person      *Person  `json:"person" toml:"person"`

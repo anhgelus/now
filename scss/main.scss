@@ -5,16 +5,12 @@
 :root {
   --text-color: #000;
   font-size: 18px;
-}
-
-@font-face {
-  font-family: "custom";
-  src: url("/static/font.woff2");
+  --fonts: Raveo, Inter, Roboto; // default fonts
 }
 
 body {
   --background-image: ;
-  font-family: "custom", Raveo, Inter, Roboto, sans-serif;
+  font-family: var(--fonts), sans-serif;
   background: #000;
   background-size: cover;
   color: var(--text-color);
