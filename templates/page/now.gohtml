@@ -9,7 +9,9 @@
         <div class="tags" style="{{ .Color.GetTagColor }}">
             {{ range $now := .Person.Now }}
                 <div class="tag">
-                    <h4>{{ .Name }}</h4>
+                    {{ if ne .Name "" }}
+                        <h4>{{ .Name }}</h4>
+                    {{ end }}
                     <p>{{ .Description }}</p>
                     {{ if and (ne .Link "") (ne .LinkName "") }}
                         <p><a href="{{ .Link }}">{{ .LinkName }}</a></p>
