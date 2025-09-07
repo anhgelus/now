@@ -55,6 +55,7 @@ type Tag struct {
 	Name        string `json:"name" toml:"name"`
 	Description string `json:"description" toml:"description"`
 	Link        string `json:"link" toml:"link"`
+	LinkName    string `json:"link_name" toml:"link_name"`
 }
 
 type Color struct {

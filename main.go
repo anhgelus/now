@@ -186,8 +186,8 @@ func generateConfigFile(isToml bool) {
 			Pronouns: "any",
 			Image:    "pfp.webp",
 			Tags: []*Tag{
-				{"Hello", "World", ""},
-				{"I am", "a tag", ""},
+				{"Hello", "World", "", ""},
+				{"I am", "a tag", "", ""},
 			},
 		},
 		Color: &Color{

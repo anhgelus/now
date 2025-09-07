@@ -8,10 +8,12 @@
         </div>
         <div class="tags" style="{{ .Color.GetTagColor }}">
             {{ range $tag := .Person.Tags }}
-                <div class="tag" data-href="{{ .Link }}" title="{{ .Link }}">
+                <div class="tag">
                     <h4>{{ .Name }}</h4>
                     <p>{{ .Description }}</p>
-                    <p><a href="">Hello</a></p>
+                    {{ if and (ne .Link "") (ne .LinkName "") }}
+                        <p><a href="{{ .Link }}">{{ .LinkName }}</a></p>
+                    {{ end }}
                 </div>
             {{ end }}
         </div>
