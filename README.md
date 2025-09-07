@@ -7,6 +7,29 @@ Lightweight and heavily customizable Go application.
 
 ![Screenshot of a custom page](music.jpg)
 
+## Installation
+
+Dependencies:
+- Go 1.24+
+- Bun
+- just
+
+Clone the repository:
+```bash
+git clone https://git.anhgelus.world/anhgelus/now.git
+cd now 
+```
+
+Build the project with just:
+```bash
+just build
+```
+
+You can also manually build it by reading the content of `justfile` and executing the command.
+
+The `now` binary produced contains everything needed and can be executed on the same OS with the same arch.
+Execute it with the flag `-help` to get the list of available options.
+
 ## Config
 You must have a `public` directory.
 Everything located inside will be available at the path `/static/PATH` where `PATH` is the relative path inside the
