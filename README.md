@@ -42,6 +42,10 @@ You can create a sample config with the flag `-generate-json-config` (which gene
 The config does not depend on the markup language: a field `foo` will being named `foo` for JSON and TOML.
 The TOML format is used in this section.
 
+Every path is relative to the `public` directory (except for html and config files which are relatives to the path of
+the binary).
+For example, `wallpaper.webp` is searched in `public/wallpaper.webp`
+
 The root is defining the background image, the description, the file's path to the legal pages, the path to the custom 
 font (you can remove this if you want to use `Raveo, Inter, Roboto` as default fonts), the path to the configs of custom
 pages and a list of all your ["rel-me"](https://microformats.org/wiki/rel-me) links. 
@@ -55,8 +59,7 @@ font = ""
 custom_pages = ["custom.toml"]
 rel_me_links = ["https://foo.example.org/@bar"]
 ```
-The path is relative to the execution of the binary, except for `image` and `font` which are relative to the `public` 
-folder.
+The `legal` and `custom_pages` are relatives to the path of the binary.
 If you are using Docker, please use a static path.
 
 The first section is defining who you are.
@@ -68,16 +71,21 @@ It must be placed inside the `public` directory.
   pronouns = "any"
   image = "pfp.webp"
 
-  [[person.tags]]
+  [[person.now]]
     name = "Hello"
     description = "World"
     link = ""
+    link_name = ""
 
-  [[person.tags]]
+  [[person.now]]
     name = "I am"
     description = "a tag"
-    link = ""
+    link = "https://example.org/foo/bar"
+    link_name = "And I have a link!"
 ```
+Only `person.now.description` is required.
+If you omit a field, the content linked with it will not appear.
+`person.now.link_name` is the link's name displayed.
 
 Then, you define the colors of the main page.
 `text` is the text's color.
@@ -144,6 +152,7 @@ image = "wallpaper.webp"
 description = "I am a beautiful description!"
 content = "foo-bar.html"
 ```
+The `content` is relative to the path of the binary.
 
 Then, you can define custom colors.
 Check _Main config_'s colors section for more information.

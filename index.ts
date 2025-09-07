@@ -1,13 +1,4 @@
 function setupEvents() {
-    document.querySelectorAll<HTMLElement>(".tag")?.forEach(t => {
-        t.addEventListener("click", _ => {
-            const link = t.getAttribute("data-href")
-            if (link === null || link === "") return
-            if (!link.startsWith(window.location.origin) && link.startsWith("https://")) window.open(link)
-            else changePage(link)
-        })
-    })
-
     document.querySelectorAll<HTMLAnchorElement>("a")?.forEach(a => {
         a.addEventListener("click", e => {
             if (!a.href.startsWith(window.location.origin)) return

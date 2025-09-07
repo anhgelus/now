@@ -117,14 +117,14 @@ func main() {
 		"/legal",
 		"Legal things",
 		"",
-		"Legal information about "+cfg.Person.Name+"'s Now page",
+		"Legal information about "+cfg.Person.Name+"'s bio",
 		&cfg,
 	).Handle()
-	g.NewTemplate("tags",
-		"/tags",
-		"Tags",
+	g.NewTemplate("now",
+		"/now",
+		"Now",
 		"",
-		"Tags of "+cfg.Person.Name+"'s Now page",
+		""+cfg.Person.Name+"'s now",
 		&cfg,
 	).Handle()
 
@@ -140,6 +140,14 @@ func main() {
 	}
 
 	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {
+		g.Render(w, "404", &golatt.TemplateData{
+			Title: "Not found :(",
+			SEO: &golatt.SeoData{
+				URL:         r.URL.Path,
+				Description: "Not found",
+			},
+			Data: &cfg,
+		})
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 
@@ -185,9 +193,9 @@ func generateConfigFile(isToml bool) {
 			Name:     "John Doe",
 			Pronouns: "any",
 			Image:    "pfp.webp",
-			Tags: []*Tag{
-				{"Hello", "World", ""},
-				{"I am", "a tag", ""},
+			Now: []*Now{
+				{"Hello", "World", "", ""},
+				{"I am", "a tag", "", ""},
 			},
 		},
 		Color: &Color{
