@@ -7,7 +7,7 @@
             </nav>
         </div>
         <div class="tags" style="{{ .Color.GetTagColor }}">
-            {{ range $tag := .Person.Tags }}
+            {{ range $now := .Person.Now }}
                 <div class="tag">
                     <h4>{{ .Name }}</h4>
                     <p>{{ .Description }}</p>

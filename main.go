@@ -185,7 +185,7 @@ func generateConfigFile(isToml bool) {
 			Name:     "John Doe",
 			Pronouns: "any",
 			Image:    "pfp.webp",
-			Tags: []*Tag{
+			Now: []*Now{
 				{"Hello", "World", "", ""},
 				{"I am", "a tag", "", ""},
 			},
