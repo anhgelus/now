@@ -37,10 +37,4 @@
       display: block;
     }
   }
-  &:hover {
-    background: var(--tag-hover);
-    & h4 {
-      font-weight: bold;
-    }
-  }
 }

@@ -117,14 +117,14 @@ func main() {
 		"/legal",
 		"Legal things",
 		"",
-		"Legal information about "+cfg.Person.Name+"'s Now page",
+		"Legal information about "+cfg.Person.Name+"'s bio",
 		&cfg,
 	).Handle()
-	g.NewTemplate("tags",
-		"/tags",
-		"Tags",
+	g.NewTemplate("now",
+		"/now",
+		"Now",
 		"",
-		"Tags of "+cfg.Person.Name+"'s Now page",
+		""+cfg.Person.Name+"'s now",
 		&cfg,
 	).Handle()
 

@@ -1,4 +1,5 @@
 {{define "base"}}
+    {{ $notRoot := ne .SEO.URL "/" }}
     <!doctype html>
     <html lang="fr" prefix="og: https://ogp.me/ns#">
     <head>
@@ -20,7 +21,7 @@
         </style>
         <link rel="stylesheet" href="{{getAssetPath "styles.css"}}" />
         {{template "opengraph-base" .SEO}}
-        {{ if .Data.IsCustomPage }}
+        {{ if $notRoot }}
             <style>
                 .links { {{ .Data.Color.Button.GetBackground }}{{ .Data.Color.Button.GetTextColor }} }
             </style>
@@ -36,7 +37,7 @@
     </div>
     {{ $rings := getRings }}
     {{ if ne $rings nil }}
-    <div class="rings {{ if ne .SEO.URL "/" }}fixed{{ end }}">
+    <div class="rings {{ if $notRoot }}fixed{{ end }}">
         {{ range $ring := $rings }}
             <a href="{{ $ring.Link }}" target="_blank" class="ring">
                 <img src="{{ getImage $ring.Image }}" alt="{{ $ring.Name }} logo">
