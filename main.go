@@ -148,7 +148,6 @@ func main() {
 			},
 			Data: &cfg,
 		})
-		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 
 	g.TemplateFuncMap = template.FuncMap{
