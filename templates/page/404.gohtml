@@ -1,0 +1,24 @@
+{{define "body"}}
+    <main style="{{ .GetBackground }}">
+        <div class="header">
+            <h1 class="header__title">404 - Not found</h1>
+            <nav>
+                <a href="/">Home</a>
+            </nav>
+        </div>
+        <p>
+            Oh no, you are lost. Do you need help?
+        </p>
+        <nav class="links" style="{{ .Color.Button.GetBackground }}{{ .Color.Button.GetTextColor }}">
+            <div class="link">
+                <a href="/legal">Legal information</a>
+            </div>
+            <div class="link">
+                <a href="/">Home</a>
+            </div>
+            <div class="link">
+                <a href="/now">Now</a>
+            </div>
+        </nav>
+    </main>
+{{end}}

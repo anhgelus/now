@@ -140,6 +140,14 @@ func main() {
 	}
 
 	g.NotFoundHandler = func(w http.ResponseWriter, r *http.Request) {
+		g.Render(w, "404", &golatt.TemplateData{
+			Title: "Not found :(",
+			SEO: &golatt.SeoData{
+				URL:         r.URL.Path,
+				Description: "Not found",
+			},
+			Data: &cfg,
+		})
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
 

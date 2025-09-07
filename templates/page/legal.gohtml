@@ -1,11 +1,16 @@
 {{define "body"}}
-    <div class="credits-legal" style="{{ .GetBackground }}">
-        <h1>Legal information</h1>
+    <main style="{{ .GetBackground }}">
+        <div class="header">
+            <h1 class="header__title">Legal information</h1>
+            <nav>
+                <a href="/">Home</a>
+            </nav>
+        </div>
         <p>
             The software behind this website was made by <a href="https://anhgelus.world/" target="_blank">Anhgelus Morhtuuzh</a>.
             It is available on <a href="https://git.anhgelus.world/anhgelus/now">my forge</a> for free and licensed under
             the <a href="https://git.anhgelus.world/anhgelus/now/raw/branch/main/LICENSE" target="_blank">AGPL</a> license.
         </p>
         {{ .GetLegal }}
-    </div>
+    </main>
 {{end}}
