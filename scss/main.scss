@@ -72,7 +72,7 @@ main {
   margin-top: 10vh;
   margin-bottom: 10vh;
   max-width: 800px;
-  & h1, h2, h3 {
+  & h1 {
     margin: 0;
   }
   @media only screen and (max-width: vars.$bp-mid) {
@@ -144,7 +144,6 @@ em {
 
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   @media only screen and (max-width: vars.$bp-little) {
     flex-direction: column;
